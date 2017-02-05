@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -220,7 +221,70 @@ namespace IntersectToolkit {
             }
         }
         #endregion
+
+        #region Resize Graphics
+        private void resizeInputBrowse_Click(object sender, EventArgs e) {
+            var d = new FolderBrowserDialog();
+            var s = d.ShowDialog();
+            if (s == DialogResult.OK) {
+                resizeInput.Text = d.SelectedPath;
+            }
+        }
+        private void resizeOutputBrowse_Click(object sender, EventArgs e) {
+            var d = new FolderBrowserDialog();
+            var s = d.ShowDialog();
+            if (s == DialogResult.OK) {
+                resizeOutput.Text = d.SelectedPath;
+            }
+        }
+        private void resizeBtnGo_Click(object sender, EventArgs e) {
+            Double modifier;
+            if (!Double.TryParse(resizeModifier.Text, out modifier)) {
+                MessageBox.Show("Please enter a valid amount by which to resize the image!");
+                return;
+            }
+            if (!Directory.Exists(resizeInput.Text) || !Directory.Exists(resizeOutput.Text)) {
+                MessageBox.Show("Both the Input and Output folders need to be set to an existing folder!");
+            } else {
+                TabsMain.Enabled = false;
+                resizeList.Items.Clear();
+
+                var w = new BackgroundWorker();
+                w.DoWork += (s, a) => {
+                    var args = (String[])a.Argument;
+                    var input = args[0];
+                    var output = args[1];
+
+                    foreach (var file in new DirectoryInfo(input).EnumerateFiles("*.png")) {
+                        using (var tmp = Image.FromFile(file.FullName)) {
+
+                            using (var newimage = new Bitmap((Int32)(tmp.Width * modifier), (Int32)(tmp.Height * modifier), PixelFormat.Format32bppArgb)) {
+                                using (var g = Graphics.FromImage(newimage)) {
+                                    g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                                    g.CompositingMode = CompositingMode.SourceCopy;
+                                    g.CompositingQuality = CompositingQuality.HighQuality;
+                                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                                    g.Clear(System.Drawing.Color.Transparent);
+                                    g.DrawImage(tmp, new Rectangle(0, 0, newimage.Width, newimage.Height), new Rectangle(0, 0, tmp.Width, tmp.Height), GraphicsUnit.Pixel);
+                                    g.Flush();
+                                }
+                                this.Invoke(new Action(() => {
+                                    newimage.Save(Path.Combine(output, file.Name), ImageFormat.Png);
+                                    resizeList.Items.Add(String.Format("Processed {0}.", file.Name));
+                                    resizeList.TopIndex = vxinOutputDisplay.Items.Count - 1;
+                                }));
+                            }
+                        }
+                    }
+                };
+                w.RunWorkerCompleted += (s, a) => { this.Invoke(new Action(() => { MessageBox.Show("Task complete!"); TabsMain.Enabled = true; })); };
+                w.RunWorkerAsync(new String[] { resizeInput.Text, resizeOutput.Text });
+            }
+        }
         #endregion
+        #endregion
+
 
     }
 }

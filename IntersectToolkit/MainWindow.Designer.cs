@@ -96,6 +96,17 @@
             this.vxinInput = new System.Windows.Forms.TextBox();
             this.vxinBtnInput = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.resizeModifier = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.resizeList = new System.Windows.Forms.ListBox();
+            this.resizeBtnGo = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.resizeOutput = new System.Windows.Forms.TextBox();
+            this.resizeOutputBrowse = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.resizeInput = new System.Windows.Forms.TextBox();
+            this.resizeInputBrowse = new System.Windows.Forms.Button();
             this.TabsMain.SuspendLayout();
             this.tabdatabase.SuspendLayout();
             this.tdatabase.SuspendLayout();
@@ -110,6 +121,9 @@
             this.vxTab.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabsMain
@@ -834,6 +848,13 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label25);
+            this.tabPage2.Controls.Add(this.resizeModifier);
+            this.tabPage2.Controls.Add(this.label24);
+            this.tabPage2.Controls.Add(this.resizeList);
+            this.tabPage2.Controls.Add(this.resizeBtnGo);
+            this.tabPage2.Controls.Add(this.groupBox6);
+            this.tabPage2.Controls.Add(this.groupBox7);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -841,6 +862,112 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Resize Graphics";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(110, 439);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(34, 13);
+            this.label25.TabIndex = 10;
+            this.label25.Text = "times.";
+            // 
+            // resizeModifier
+            // 
+            this.resizeModifier.Location = new System.Drawing.Point(54, 436);
+            this.resizeModifier.Name = "resizeModifier";
+            this.resizeModifier.Size = new System.Drawing.Size(49, 20);
+            this.resizeModifier.TabIndex = 9;
+            this.resizeModifier.Text = "1.0";
+            this.resizeModifier.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(9, 439);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(39, 13);
+            this.label24.TabIndex = 8;
+            this.label24.Text = "Resize";
+            // 
+            // resizeList
+            // 
+            this.resizeList.FormattingEnabled = true;
+            this.resizeList.Location = new System.Drawing.Point(12, 64);
+            this.resizeList.Name = "resizeList";
+            this.resizeList.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.resizeList.Size = new System.Drawing.Size(708, 303);
+            this.resizeList.TabIndex = 7;
+            // 
+            // resizeBtnGo
+            // 
+            this.resizeBtnGo.Location = new System.Drawing.Point(150, 434);
+            this.resizeBtnGo.Name = "resizeBtnGo";
+            this.resizeBtnGo.Size = new System.Drawing.Size(576, 23);
+            this.resizeBtnGo.TabIndex = 6;
+            this.resizeBtnGo.Text = "Go!";
+            this.resizeBtnGo.UseVisualStyleBackColor = true;
+            this.resizeBtnGo.Click += new System.EventHandler(this.resizeBtnGo_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.resizeOutput);
+            this.groupBox6.Controls.Add(this.resizeOutputBrowse);
+            this.groupBox6.Location = new System.Drawing.Point(6, 376);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(720, 52);
+            this.groupBox6.TabIndex = 5;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Output";
+            // 
+            // resizeOutput
+            // 
+            this.resizeOutput.Enabled = false;
+            this.resizeOutput.Location = new System.Drawing.Point(6, 19);
+            this.resizeOutput.Name = "resizeOutput";
+            this.resizeOutput.Size = new System.Drawing.Size(627, 20);
+            this.resizeOutput.TabIndex = 3;
+            this.resizeOutput.Text = "Please select an output folder.";
+            // 
+            // resizeOutputBrowse
+            // 
+            this.resizeOutputBrowse.Location = new System.Drawing.Point(639, 17);
+            this.resizeOutputBrowse.Name = "resizeOutputBrowse";
+            this.resizeOutputBrowse.Size = new System.Drawing.Size(75, 23);
+            this.resizeOutputBrowse.TabIndex = 2;
+            this.resizeOutputBrowse.Text = "Browse";
+            this.resizeOutputBrowse.UseVisualStyleBackColor = true;
+            this.resizeOutputBrowse.Click += new System.EventHandler(this.resizeOutputBrowse_Click);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.resizeInput);
+            this.groupBox7.Controls.Add(this.resizeInputBrowse);
+            this.groupBox7.Location = new System.Drawing.Point(6, 6);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(720, 52);
+            this.groupBox7.TabIndex = 4;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Input";
+            // 
+            // resizeInput
+            // 
+            this.resizeInput.Enabled = false;
+            this.resizeInput.Location = new System.Drawing.Point(6, 19);
+            this.resizeInput.Name = "resizeInput";
+            this.resizeInput.Size = new System.Drawing.Size(627, 20);
+            this.resizeInput.TabIndex = 3;
+            this.resizeInput.Text = "Please select an input folder.";
+            // 
+            // resizeInputBrowse
+            // 
+            this.resizeInputBrowse.Location = new System.Drawing.Point(639, 17);
+            this.resizeInputBrowse.Name = "resizeInputBrowse";
+            this.resizeInputBrowse.Size = new System.Drawing.Size(75, 23);
+            this.resizeInputBrowse.TabIndex = 2;
+            this.resizeInputBrowse.Text = "Browse";
+            this.resizeInputBrowse.UseVisualStyleBackColor = true;
+            this.resizeInputBrowse.Click += new System.EventHandler(this.resizeInputBrowse_Click);
             // 
             // MainWindow
             // 
@@ -875,6 +1002,12 @@
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -954,6 +1087,17 @@
         private System.Windows.Forms.ListBox vxinOutputDisplay;
         private System.Windows.Forms.ComboBox accCharMap;
         private System.Windows.Forms.ComboBox accCharClass;
+        private System.Windows.Forms.ListBox resizeList;
+        private System.Windows.Forms.Button resizeBtnGo;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox resizeOutput;
+        private System.Windows.Forms.Button resizeOutputBrowse;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox resizeInput;
+        private System.Windows.Forms.Button resizeInputBrowse;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox resizeModifier;
+        private System.Windows.Forms.Label label24;
     }
 }
 
