@@ -28,6 +28,8 @@
             this.tdatabase = new System.Windows.Forms.TabControl();
             this.tabaccounts = new System.Windows.Forms.TabPage();
             this.accCharBox = new System.Windows.Forms.GroupBox();
+            this.accCharClass = new System.Windows.Forms.ComboBox();
+            this.accCharMap = new System.Windows.Forms.ComboBox();
             this.accCharGender = new System.Windows.Forms.ComboBox();
             this.accCharStatpoints = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -84,9 +86,9 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.tabgraphics = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.vxTab = new System.Windows.Forms.TabPage();
             this.vxinOutputDisplay = new System.Windows.Forms.ListBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.vxBtnGo = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.vxinOutput = new System.Windows.Forms.TextBox();
             this.vxinBtnOutput = new System.Windows.Forms.Button();
@@ -94,8 +96,6 @@
             this.vxinInput = new System.Windows.Forms.TextBox();
             this.vxinBtnInput = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.accCharMap = new System.Windows.Forms.ComboBox();
-            this.accCharClass = new System.Windows.Forms.ComboBox();
             this.TabsMain.SuspendLayout();
             this.tabdatabase.SuspendLayout();
             this.tdatabase.SuspendLayout();
@@ -107,7 +107,7 @@
             this.groupBox3.SuspendLayout();
             this.tabgraphics.SuspendLayout();
             this.tabControl2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.vxTab.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
@@ -197,6 +197,24 @@
             this.accCharBox.TabIndex = 4;
             this.accCharBox.TabStop = false;
             this.accCharBox.Text = "Character";
+            // 
+            // accCharClass
+            // 
+            this.accCharClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharClass.FormattingEnabled = true;
+            this.accCharClass.Location = new System.Drawing.Point(426, 22);
+            this.accCharClass.Name = "accCharClass";
+            this.accCharClass.Size = new System.Drawing.Size(162, 21);
+            this.accCharClass.TabIndex = 35;
+            // 
+            // accCharMap
+            // 
+            this.accCharMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharMap.FormattingEnabled = true;
+            this.accCharMap.Location = new System.Drawing.Point(108, 71);
+            this.accCharMap.Name = "accCharMap";
+            this.accCharMap.Size = new System.Drawing.Size(162, 21);
+            this.accCharMap.TabIndex = 34;
             // 
             // accCharGender
             // 
@@ -713,7 +731,7 @@
             // 
             // tabControl2
             // 
-            this.tabControl2.Controls.Add(this.tabPage1);
+            this.tabControl2.Controls.Add(this.vxTab);
             this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Location = new System.Drawing.Point(6, 6);
             this.tabControl2.Name = "tabControl2";
@@ -721,19 +739,19 @@
             this.tabControl2.Size = new System.Drawing.Size(740, 494);
             this.tabControl2.TabIndex = 0;
             // 
-            // tabPage1
+            // vxTab
             // 
-            this.tabPage1.Controls.Add(this.vxinOutputDisplay);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.groupBox5);
-            this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(732, 468);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "VX To Intersect";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.vxTab.Controls.Add(this.vxinOutputDisplay);
+            this.vxTab.Controls.Add(this.vxBtnGo);
+            this.vxTab.Controls.Add(this.groupBox5);
+            this.vxTab.Controls.Add(this.groupBox4);
+            this.vxTab.Location = new System.Drawing.Point(4, 22);
+            this.vxTab.Name = "vxTab";
+            this.vxTab.Padding = new System.Windows.Forms.Padding(3);
+            this.vxTab.Size = new System.Drawing.Size(732, 468);
+            this.vxTab.TabIndex = 0;
+            this.vxTab.Text = "VX To Intersect";
+            this.vxTab.UseVisualStyleBackColor = true;
             // 
             // vxinOutputDisplay
             // 
@@ -744,15 +762,15 @@
             this.vxinOutputDisplay.Size = new System.Drawing.Size(708, 303);
             this.vxinOutputDisplay.TabIndex = 3;
             // 
-            // button3
+            // vxBtnGo
             // 
-            this.button3.Location = new System.Drawing.Point(6, 434);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(720, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Go!";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.vxBtnGo.Location = new System.Drawing.Point(6, 434);
+            this.vxBtnGo.Name = "vxBtnGo";
+            this.vxBtnGo.Size = new System.Drawing.Size(720, 23);
+            this.vxBtnGo.TabIndex = 2;
+            this.vxBtnGo.Text = "Go!";
+            this.vxBtnGo.UseVisualStyleBackColor = true;
+            this.vxBtnGo.Click += new System.EventHandler(this.vxBtnGo_Click);
             // 
             // groupBox5
             // 
@@ -824,24 +842,6 @@
             this.tabPage2.Text = "Resize Graphics";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // accCharMap
-            // 
-            this.accCharMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accCharMap.FormattingEnabled = true;
-            this.accCharMap.Location = new System.Drawing.Point(108, 71);
-            this.accCharMap.Name = "accCharMap";
-            this.accCharMap.Size = new System.Drawing.Size(162, 21);
-            this.accCharMap.TabIndex = 34;
-            // 
-            // accCharClass
-            // 
-            this.accCharClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accCharClass.FormattingEnabled = true;
-            this.accCharClass.Location = new System.Drawing.Point(426, 22);
-            this.accCharClass.Name = "accCharClass";
-            this.accCharClass.Size = new System.Drawing.Size(162, 21);
-            this.accCharClass.TabIndex = 35;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -870,7 +870,7 @@
             this.groupBox3.PerformLayout();
             this.tabgraphics.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.vxTab.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -942,8 +942,8 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ListBox lstTilesets;
         private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabPage vxTab;
+        private System.Windows.Forms.Button vxBtnGo;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox vxinOutput;
         private System.Windows.Forms.Button vxinBtnOutput;

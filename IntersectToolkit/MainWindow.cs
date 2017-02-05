@@ -1,4 +1,7 @@
-﻿using IntersectToolkit.Database;
+﻿using Intersect_Library;
+using Intersect_Library.GameObjects;
+using Intersect_Library.GameObjects.Maps;
+using IntersectToolkit.Database;
 using SQLiteConnector;
 using System;
 using System.Collections.Generic;
@@ -9,10 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Intersect_Library;
 using System.Xml;
-using Intersect_Library.GameObjects.Maps;
-using Intersect_Library.GameObjects;
 
 namespace IntersectToolkit {
     public partial class MainWindow : Form {
@@ -25,11 +25,11 @@ namespace IntersectToolkit {
         public MainWindow() {
             InitializeComponent();
         }
-
         private void MainWindow_Load(object sender, EventArgs e) {
             LoadOptions();
         }
 
+        #region Options
         private void LoadOptions() {
             if (!File.Exists("config.xml")) {
                 MessageBox.Show("Please copy config.xml from the Intersect server to the location this tool is run from.");
@@ -39,7 +39,55 @@ namespace IntersectToolkit {
             Options.MapWidth = Int32.Parse(config["Config"]["Map"]["MapWidth"].InnerXml);
             Options.MapHeight = Int32.Parse(config["Config"]["Map"]["MapHeight"].InnerXml);
         }
+        #endregion
 
+        #region Database
+        #region Refresh
+        private void RefreshDB() {
+            RefreshMaps();
+            RefreshClasses();
+            RefreshAccounts();
+            RefreshTilesets();
+        }
+        private void RefreshAccounts() {
+            lstAccounts.Items.Clear();
+            foreach (var u in DBHandler.ExecuteQuery<Users>("SELECT * FROM users;")) {
+                lstAccounts.Items.Add(String.Format("{0}", u.user));
+            }
+            if (lstAccounts.Items.Count > 0) lstAccounts.SelectedIndex = 0;
+        }
+        private void RefreshTilesets() {
+            lstTilesets.Items.Clear();
+            Tilesets.Clear();
+            foreach (var t in DBHandler.ExecuteQuery<Tilesets>("SELECT * FROM tilesets;")) {
+                lstTilesets.Items.Add(String.Format("{1}", t.id, Encoding.Default.GetString(t.data)));
+                Tilesets.Add(Encoding.Default.GetString(t.data), t.id);
+            }
+            if (lstTilesets.Items.Count > 0) lstTilesets.SelectedIndex = 0;
+        }
+        private void RefreshMaps() {
+            Maps.Clear();
+            accCharMap.Items.Clear();
+            foreach (var m in DBHandler.ExecuteQuery<Maps>("SELECT * FROM maps WHERE deleted=0")) {
+                var x = new MapBase((Int32)m.id, true);
+                x.Load(m.data);
+                Maps.Add(x.MyName, m.id);
+                accCharMap.Items.Add(x.MyName);
+            }
+        }
+        private void RefreshClasses() {
+            Classes.Clear();
+            accCharClass.Items.Clear();
+            foreach (var c in DBHandler.ExecuteQuery<Maps>("SELECT * FROM classes WHERE deleted=0")) {
+                var x = new ClassBase((Int32)c.id);
+                x.Load(c.data);
+                Classes.Add(x.Name, c.id);
+                accCharClass.Items.Add(x.Name);
+            }
+        }
+        #endregion
+
+        #region Browse
         private void btnBrowse_Click(object sender, EventArgs e) {
             using (var d = new OpenFileDialog()) {
                 d.Filter = "Intersect Database|*.db";
@@ -56,54 +104,9 @@ namespace IntersectToolkit {
                 tdatabase.Enabled = true;
             }
         }
+        #endregion
 
-        private void RefreshDB() {
-            RefreshMaps();
-            RefreshClasses();
-            RefreshAccounts();
-            RefreshTilesets();
-        }
-
-        private void RefreshAccounts() {
-            lstAccounts.Items.Clear();
-            foreach (var u in DBHandler.ExecuteQuery<Users>("SELECT * FROM users;")) {
-                lstAccounts.Items.Add(String.Format("{0}", u.user));
-            }
-            if (lstAccounts.Items.Count > 0) lstAccounts.SelectedIndex = 0;
-        }
-
-        private void RefreshTilesets() {
-            lstTilesets.Items.Clear();
-            Tilesets.Clear();
-            foreach (var t in DBHandler.ExecuteQuery<Tilesets>("SELECT * FROM tilesets;")) {
-                lstTilesets.Items.Add(String.Format("{1}", t.id, Encoding.Default.GetString(t.data)));
-                Tilesets.Add(Encoding.Default.GetString(t.data), t.id);
-            }
-            if (lstTilesets.Items.Count > 0) lstTilesets.SelectedIndex = 0;
-        }
-
-        private void RefreshMaps() {
-            Maps.Clear();
-            accCharMap.Items.Clear();
-            foreach(var m in DBHandler.ExecuteQuery<Maps>("SELECT * FROM maps WHERE deleted=0")) {
-                var x = new MapBase((Int32)m.id, true);
-                x.Load(m.data);
-                Maps.Add(x.MyName, m.id);
-                accCharMap.Items.Add(x.MyName);
-            }
-        }
-
-        private void RefreshClasses() {
-            Classes.Clear();
-            accCharClass.Items.Clear();
-            foreach (var c in DBHandler.ExecuteQuery<Maps>("SELECT * FROM classes WHERE deleted=0")) {
-                var x = new ClassBase((Int32)c.id);
-                x.Load(c.data);
-                Classes.Add(x.Name, c.id);
-                accCharClass.Items.Add(x.Name);
-            }
-        }
-
+        #region Accounts
         private void lstAccounts_SelectedIndexChanged(object sender, EventArgs e) {
             if (lstAccounts.SelectedItem == null) return;
 
@@ -124,7 +127,7 @@ namespace IntersectToolkit {
                 var chara = character.Single();
                 accCharId.Text = chara.id.ToString();
                 accCharName.Text = chara.name;
-                accCharMap.SelectedItem = Maps.Where(x=>x.Value == chara.map).Select(x=>x.Key).SingleOrDefault();
+                accCharMap.SelectedItem = Maps.Where(x => x.Value == chara.map).Select(x => x.Key).SingleOrDefault();
                 accCharX.Text = chara.x.ToString();
                 accCharY.Text = chara.y.ToString();
                 accCharZ.SelectedIndex = (Int32)chara.z;
@@ -138,14 +141,15 @@ namespace IntersectToolkit {
                 accCharStatpoints.Text = chara.statpoints.ToString();
             }
         }
-
         private void accUserSaveChanges_Click(object sender, EventArgs e) {
             DBHandler.ExecuteNonQuery("UPDATE users SET user=@user, email=@email, power=@power WHERE id=@id;", new Dictionary<String, Object>() { { "@user", accUserName.Text.Trim() }, { "@email", accUserEmail.Text.Trim() }, { "@power", accUserAccess.SelectedIndex }, { "@id", accUserId.Text.Trim() } });
             DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints WHERE id=@id;",
                 new Dictionary<String, Object>() { { "@name", accCharName.Text.Trim() }, { "@map", Maps[(String)accCharMap.SelectedItem] }, { "@x", accCharX.Text.Trim() }, { "@y", accCharY.Text.Trim() }, { "@z", accCharZ.SelectedIndex }, { "@dir", accCharDirection.SelectedIndex }, { "@sprite", accCharSprite.Text.Trim() }, { "@face", accCharFace.Text.Trim() },
                     { "@class", Classes[(String)accCharClass.SelectedItem] }, { "@gender", accCharGender.SelectedIndex }, { "@level", accCharLevel.Text.Trim() }, { "@exp", accCharExp.Text.Trim() }, { "@statpoints", accCharStatpoints.Text.Trim() }, { "@id", accCharId.Text.Trim() } });
         }
+        #endregion
 
+        #region Tilesets
         private void lstTilesets_SelectedIndexChanged(object sender, EventArgs e) {
             if (lstTilesets.SelectedItem == null) return;
 
@@ -154,12 +158,15 @@ namespace IntersectToolkit {
             tilTilesetFilename.Text = (String)lstTilesets.SelectedItem;
             tilTilesetDeleted.SelectedIndex = (Int32)tileset.deleted;
         }
-
         private void tilSaveChanges_Click(object sender, EventArgs e) {
             DBHandler.ExecuteNonQuery("UPDATE tilesets SET deleted=@deleted, data=@data WHERE id=@id;", new Dictionary<String, Object>() { { "@deleted", tilTilesetDeleted.SelectedIndex }, { "@data", tilTilesetFilename.Text }, { "@id", tilTilesetId.Text } });
             RefreshTilesets();
         }
+        #endregion
+        #endregion
 
+        #region Graphics
+        #region VX To Intersect
         private void vxinBtnInput_Click(object sender, EventArgs e) {
             var d = new FolderBrowserDialog();
             var s = d.ShowDialog();
@@ -167,7 +174,6 @@ namespace IntersectToolkit {
                 vxinInput.Text = d.SelectedPath;
             }
         }
-
         private void vxinBtnOutput_Click(object sender, EventArgs e) {
             var d = new FolderBrowserDialog();
             var s = d.ShowDialog();
@@ -175,8 +181,7 @@ namespace IntersectToolkit {
                 vxinOutput.Text = d.SelectedPath;
             }
         }
-
-        private void button3_Click(object sender, EventArgs e) {
+        private void vxBtnGo_Click(object sender, EventArgs e) {
             if (!Directory.Exists(vxinInput.Text) || !Directory.Exists(vxinOutput.Text)) {
                 MessageBox.Show("Both the Input and Output folders need to be set to an existing folder!");
             } else {
@@ -214,6 +219,8 @@ namespace IntersectToolkit {
                 w.RunWorkerAsync(new String[] { vxinInput.Text, vxinOutput.Text });
             }
         }
+        #endregion
+        #endregion
 
     }
 }
