@@ -172,11 +172,19 @@ namespace IntersectToolkit {
             }
         }
         private void accUserSaveChanges_Click(object sender, EventArgs e) {
-            DBHandler.ExecuteNonQuery("UPDATE users SET user=@user, email=@email, power=@power WHERE id=@id;", new Dictionary<String, Object>() { { "@user", accUserName.Text.Trim() }, { "@email", accUserEmail.Text.Trim() }, { "@power", accUserAccess.SelectedIndex }, { "@id", accUserId.Text.Trim() } });
-            DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints, vitals=@vitals, maxvitals=@maxvitals, stats=@stats WHERE id=@id;",
-                new Dictionary<String, Object>() { { "@name", accCharName.Text.Trim() }, { "@map", Maps[(String)accCharMap.SelectedItem] }, { "@x", accCharX.Text.Trim() }, { "@y", accCharY.Text.Trim() }, { "@z", accCharZ.SelectedIndex }, { "@dir", accCharDirection.SelectedIndex }, { "@sprite", accCharSprite.Text.Trim() }, { "@face", accCharFace.Text.Trim() },
+            using (var tran = DBHandler.BeginTransaction()) {
+                try {
+                    DBHandler.ExecuteNonQuery("UPDATE users SET user=@user, email=@email, power=@power WHERE id=@id;", new Dictionary<String, Object>() { { "@user", accUserName.Text.Trim() }, { "@email", accUserEmail.Text.Trim() }, { "@power", accUserAccess.SelectedIndex }, { "@id", accUserId.Text.Trim() } });
+                    DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints, vitals=@vitals, maxvitals=@maxvitals, stats=@stats WHERE id=@id;",
+                        new Dictionary<String, Object>() { { "@name", accCharName.Text.Trim() }, { "@map", Maps[(String)accCharMap.SelectedItem] }, { "@x", accCharX.Text.Trim() }, { "@y", accCharY.Text.Trim() }, { "@z", accCharZ.SelectedIndex }, { "@dir", accCharDirection.SelectedIndex }, { "@sprite", accCharSprite.Text.Trim() }, { "@face", accCharFace.Text.Trim() },
                     { "@class", Classes[(String)accCharClass.SelectedItem] }, { "@gender", accCharGender.SelectedIndex }, { "@level", accCharLevel.Text.Trim() }, { "@exp", accCharExp.Text.Trim() }, { "@statpoints", accCharStatpoints.Text.Trim() }, { "@id", accCharId.Text.Trim() }, { "@vitals", String.Join(",", CurVitals.Select(x=>x.ToString())) },
                     { "@maxvitals", String.Join(",", MaxVitals.Select(x=>x.ToString())) }, { "@stats", String.Join(",", Stats.Select(x=>x.ToString())) }});
+                    tran.Commit();
+                } catch (Exception ex) {
+                    tran.Rollback();
+                    throw ex;
+                }
+            }
         }
         private void accCharMaxVital_SelectedIndexChanged(object sender, EventArgs e) {
             accCharMaxVitalValue.Text = MaxVitals[accCharMaxVital.SelectedIndex].ToString();
