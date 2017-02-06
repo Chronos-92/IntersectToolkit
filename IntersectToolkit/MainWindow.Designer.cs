@@ -28,6 +28,17 @@
             this.tdatabase = new System.Windows.Forms.TabControl();
             this.tabaccounts = new System.Windows.Forms.TabPage();
             this.accCharBox = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.accCharCurVitalValue = new System.Windows.Forms.TextBox();
+            this.accCharCurVital = new System.Windows.Forms.ComboBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.accCharMaxVitalValue = new System.Windows.Forms.TextBox();
+            this.accCharMaxVital = new System.Windows.Forms.ComboBox();
             this.accCharClass = new System.Windows.Forms.ComboBox();
             this.accCharMap = new System.Windows.Forms.ComboBox();
             this.accCharGender = new System.Windows.Forms.ComboBox();
@@ -112,6 +123,9 @@
             this.tdatabase.SuspendLayout();
             this.tabaccounts.SuspendLayout();
             this.accCharBox.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabTilesets.SuspendLayout();
@@ -177,6 +191,7 @@
             // 
             // accCharBox
             // 
+            this.accCharBox.Controls.Add(this.tabControl1);
             this.accCharBox.Controls.Add(this.accCharClass);
             this.accCharBox.Controls.Add(this.accCharMap);
             this.accCharBox.Controls.Add(this.accCharGender);
@@ -211,6 +226,122 @@
             this.accCharBox.TabIndex = 4;
             this.accCharBox.TabStop = false;
             this.accCharBox.Text = "Character";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(291, 153);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(297, 100);
+            this.tabControl1.TabIndex = 36;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.label28);
+            this.tabPage1.Controls.Add(this.label29);
+            this.tabPage1.Controls.Add(this.accCharCurVitalValue);
+            this.tabPage1.Controls.Add(this.accCharCurVital);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(289, 74);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Vitals";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 46);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(37, 13);
+            this.label28.TabIndex = 45;
+            this.label28.Text = "Value:";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(6, 16);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(30, 13);
+            this.label29.TabIndex = 44;
+            this.label29.Text = "Vital:";
+            // 
+            // accCharCurVitalValue
+            // 
+            this.accCharCurVitalValue.Location = new System.Drawing.Point(119, 39);
+            this.accCharCurVitalValue.Name = "accCharCurVitalValue";
+            this.accCharCurVitalValue.Size = new System.Drawing.Size(162, 20);
+            this.accCharCurVitalValue.TabIndex = 43;
+            this.accCharCurVitalValue.TextChanged += new System.EventHandler(this.accCharCurVitalValue_TextChanged);
+            // 
+            // accCharCurVital
+            // 
+            this.accCharCurVital.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharCurVital.FormattingEnabled = true;
+            this.accCharCurVital.Items.AddRange(new object[] {
+            "Health",
+            "Mana"});
+            this.accCharCurVital.Location = new System.Drawing.Point(119, 12);
+            this.accCharCurVital.Name = "accCharCurVital";
+            this.accCharCurVital.Size = new System.Drawing.Size(162, 21);
+            this.accCharCurVital.TabIndex = 42;
+            this.accCharCurVital.SelectedIndexChanged += new System.EventHandler(this.accCharCurVital_SelectedIndexChanged);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label27);
+            this.tabPage3.Controls.Add(this.label26);
+            this.tabPage3.Controls.Add(this.accCharMaxVitalValue);
+            this.tabPage3.Controls.Add(this.accCharMaxVital);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(289, 74);
+            this.tabPage3.TabIndex = 1;
+            this.tabPage3.Text = "Max Vitals";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 46);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(37, 13);
+            this.label27.TabIndex = 41;
+            this.label27.Text = "Value:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 16);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(30, 13);
+            this.label26.TabIndex = 40;
+            this.label26.Text = "Vital:";
+            // 
+            // accCharMaxVitalValue
+            // 
+            this.accCharMaxVitalValue.Location = new System.Drawing.Point(119, 39);
+            this.accCharMaxVitalValue.Name = "accCharMaxVitalValue";
+            this.accCharMaxVitalValue.Size = new System.Drawing.Size(162, 20);
+            this.accCharMaxVitalValue.TabIndex = 39;
+            this.accCharMaxVitalValue.TextChanged += new System.EventHandler(this.accCharMaxVitalValue_TextChanged);
+            // 
+            // accCharMaxVital
+            // 
+            this.accCharMaxVital.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharMaxVital.FormattingEnabled = true;
+            this.accCharMaxVital.Items.AddRange(new object[] {
+            "Health",
+            "Mana"});
+            this.accCharMaxVital.Location = new System.Drawing.Point(119, 12);
+            this.accCharMaxVital.Name = "accCharMaxVital";
+            this.accCharMaxVital.Size = new System.Drawing.Size(162, 21);
+            this.accCharMaxVital.TabIndex = 38;
+            this.accCharMaxVital.SelectedIndexChanged += new System.EventHandler(this.accCharMaxVital_SelectedIndexChanged);
             // 
             // accCharClass
             // 
@@ -988,6 +1119,11 @@
             this.tabaccounts.ResumeLayout(false);
             this.accCharBox.ResumeLayout(false);
             this.accCharBox.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1098,6 +1234,17 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox resizeModifier;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox accCharCurVitalValue;
+        private System.Windows.Forms.ComboBox accCharCurVital;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox accCharMaxVitalValue;
+        private System.Windows.Forms.ComboBox accCharMaxVital;
     }
 }
 

@@ -22,6 +22,8 @@ namespace IntersectToolkit {
         private Dictionary<String, Int64> Tilesets = new Dictionary<String, Int64>();
         private Dictionary<String, Int64> Maps = new Dictionary<String, Int64>();
         private Dictionary<String, Int64> Classes = new Dictionary<String, Int64>();
+        private Int32[] CurVitals;
+        private Int32[] MaxVitals;
 
         public MainWindow() {
             InitializeComponent();
@@ -140,13 +142,35 @@ namespace IntersectToolkit {
                 accCharLevel.Text = chara.level.ToString();
                 accCharExp.Text = chara.exp.ToString();
                 accCharStatpoints.Text = chara.statpoints.ToString();
+
+                // Max before current, as we change current to max if current is higher.
+                MaxVitals = chara.maxvitals.Split(',').Select(x => x.ToInt32()).ToArray();
+                CurVitals = chara.vitals.Split(',').Select(x => x.ToInt32()).ToArray();
+                accCharMaxVital.SelectedIndex = 1; accCharMaxVital.SelectedIndex = 0;       // HACK: Make sure it always updates.
+                accCharCurVital.SelectedIndex = 1; accCharCurVital.SelectedIndex = 0;
             }
         }
         private void accUserSaveChanges_Click(object sender, EventArgs e) {
             DBHandler.ExecuteNonQuery("UPDATE users SET user=@user, email=@email, power=@power WHERE id=@id;", new Dictionary<String, Object>() { { "@user", accUserName.Text.Trim() }, { "@email", accUserEmail.Text.Trim() }, { "@power", accUserAccess.SelectedIndex }, { "@id", accUserId.Text.Trim() } });
-            DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints WHERE id=@id;",
+            DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints, vitals=@vitals, maxvitals=@maxvitals WHERE id=@id;",
                 new Dictionary<String, Object>() { { "@name", accCharName.Text.Trim() }, { "@map", Maps[(String)accCharMap.SelectedItem] }, { "@x", accCharX.Text.Trim() }, { "@y", accCharY.Text.Trim() }, { "@z", accCharZ.SelectedIndex }, { "@dir", accCharDirection.SelectedIndex }, { "@sprite", accCharSprite.Text.Trim() }, { "@face", accCharFace.Text.Trim() },
-                    { "@class", Classes[(String)accCharClass.SelectedItem] }, { "@gender", accCharGender.SelectedIndex }, { "@level", accCharLevel.Text.Trim() }, { "@exp", accCharExp.Text.Trim() }, { "@statpoints", accCharStatpoints.Text.Trim() }, { "@id", accCharId.Text.Trim() } });
+                    { "@class", Classes[(String)accCharClass.SelectedItem] }, { "@gender", accCharGender.SelectedIndex }, { "@level", accCharLevel.Text.Trim() }, { "@exp", accCharExp.Text.Trim() }, { "@statpoints", accCharStatpoints.Text.Trim() }, { "@id", accCharId.Text.Trim() }, { "@vitals", String.Join(",", CurVitals.Select(x=>x.ToString())) },
+                    { "@maxvitals", String.Join(",", MaxVitals.Select(x=>x.ToString())) }});
+        }
+        private void accCharMaxVital_SelectedIndexChanged(object sender, EventArgs e) {
+            accCharMaxVitalValue.Text = MaxVitals[accCharMaxVital.SelectedIndex].ToString();
+        }
+        private void accCharMaxVitalValue_TextChanged(object sender, EventArgs e) {
+            MaxVitals[accCharMaxVital.SelectedIndex] = accCharMaxVitalValue.Text.ToInt32();
+        }
+        private void accCharCurVital_SelectedIndexChanged(object sender, EventArgs e) {
+            accCharCurVitalValue.Text = CurVitals[accCharCurVital.SelectedIndex].ToString();
+        }
+        private void accCharCurVitalValue_TextChanged(object sender, EventArgs e) {
+            if (accCharCurVitalValue.Text.ToInt32() > accCharMaxVitalValue.Text.ToInt32()) {
+                accCharCurVitalValue.Text = accCharMaxVitalValue.Text;
+            }
+            CurVitals[accCharCurVital.SelectedIndex] = accCharCurVitalValue.Text.ToInt32();
         }
         #endregion
 
@@ -282,9 +306,12 @@ namespace IntersectToolkit {
                 w.RunWorkerAsync(new String[] { resizeInput.Text, resizeOutput.Text });
             }
         }
-        #endregion
+
+
+
         #endregion
 
+        #endregion
 
     }
 }
