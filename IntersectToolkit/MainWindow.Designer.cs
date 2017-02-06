@@ -118,6 +118,11 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.resizeInput = new System.Windows.Forms.TextBox();
             this.resizeInputBrowse = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.accCharStatValue = new System.Windows.Forms.TextBox();
+            this.accCharStat = new System.Windows.Forms.ComboBox();
             this.TabsMain.SuspendLayout();
             this.tabdatabase.SuspendLayout();
             this.tdatabase.SuspendLayout();
@@ -138,6 +143,7 @@
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabsMain
@@ -231,6 +237,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(291, 153);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -411,6 +418,7 @@
             this.accCharLevel.Name = "accCharLevel";
             this.accCharLevel.Size = new System.Drawing.Size(162, 20);
             this.accCharLevel.TabIndex = 28;
+            this.accCharLevel.TextChanged += new System.EventHandler(this.accCharLevel_TextChanged);
             // 
             // label18
             // 
@@ -1100,6 +1108,62 @@
             this.resizeInputBrowse.UseVisualStyleBackColor = true;
             this.resizeInputBrowse.Click += new System.EventHandler(this.resizeInputBrowse_Click);
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label30);
+            this.tabPage4.Controls.Add(this.label31);
+            this.tabPage4.Controls.Add(this.accCharStatValue);
+            this.tabPage4.Controls.Add(this.accCharStat);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(289, 74);
+            this.tabPage4.TabIndex = 2;
+            this.tabPage4.Text = "Stats";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 46);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(37, 13);
+            this.label30.TabIndex = 45;
+            this.label30.Text = "Value:";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 16);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(29, 13);
+            this.label31.TabIndex = 44;
+            this.label31.Text = "Stat:";
+            // 
+            // accCharStatValue
+            // 
+            this.accCharStatValue.Location = new System.Drawing.Point(119, 39);
+            this.accCharStatValue.Name = "accCharStatValue";
+            this.accCharStatValue.Size = new System.Drawing.Size(162, 20);
+            this.accCharStatValue.TabIndex = 43;
+            this.accCharStatValue.TextChanged += new System.EventHandler(this.accCharStatValue_TextChanged);
+            // 
+            // accCharStat
+            // 
+            this.accCharStat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharStat.FormattingEnabled = true;
+            this.accCharStat.Items.AddRange(new object[] {
+            "Attack",
+            "Ability Power",
+            "Defense",
+            "Magic Resistance",
+            "Speed"});
+            this.accCharStat.Location = new System.Drawing.Point(119, 12);
+            this.accCharStat.Name = "accCharStat";
+            this.accCharStat.Size = new System.Drawing.Size(162, 21);
+            this.accCharStat.TabIndex = 42;
+            this.accCharStat.SelectedIndexChanged += new System.EventHandler(this.accCharStat_SelectedIndexChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1144,6 +1208,8 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1245,6 +1311,11 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox accCharMaxVitalValue;
         private System.Windows.Forms.ComboBox accCharMaxVital;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox accCharStatValue;
+        private System.Windows.Forms.ComboBox accCharStat;
     }
 }
 

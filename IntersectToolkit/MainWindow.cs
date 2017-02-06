@@ -24,6 +24,7 @@ namespace IntersectToolkit {
         private Dictionary<String, Int64> Classes = new Dictionary<String, Int64>();
         private Int32[] CurVitals;
         private Int32[] MaxVitals;
+        private Int32[] Stats;
 
         public MainWindow() {
             InitializeComponent();
@@ -41,6 +42,8 @@ namespace IntersectToolkit {
             var config = new XmlDocument(); config.LoadXml(File.ReadAllText("config.xml"));
             Options.MapWidth = Int32.Parse(config["Config"]["Map"]["MapWidth"].InnerXml);
             Options.MapHeight = Int32.Parse(config["Config"]["Map"]["MapHeight"].InnerXml);
+            Options.MaxStatValue = Int32.Parse(config["Config"]["Player"]["MaxStat"].InnerXml);
+            Options.MaxLevel = Int32.Parse(config["Config"]["Player"]["MaxLevel"].InnerXml);
         }
         #endregion
 
@@ -148,14 +151,17 @@ namespace IntersectToolkit {
                 CurVitals = chara.vitals.Split(',').Select(x => x.ToInt32()).ToArray();
                 accCharMaxVital.SelectedIndex = 1; accCharMaxVital.SelectedIndex = 0;       // HACK: Make sure it always updates.
                 accCharCurVital.SelectedIndex = 1; accCharCurVital.SelectedIndex = 0;
+
+                Stats = chara.stats.Split(',').Select(x => x.ToInt32()).ToArray();
+                accCharStat.SelectedIndex = 1; accCharStat.SelectedIndex = 0;
             }
         }
         private void accUserSaveChanges_Click(object sender, EventArgs e) {
             DBHandler.ExecuteNonQuery("UPDATE users SET user=@user, email=@email, power=@power WHERE id=@id;", new Dictionary<String, Object>() { { "@user", accUserName.Text.Trim() }, { "@email", accUserEmail.Text.Trim() }, { "@power", accUserAccess.SelectedIndex }, { "@id", accUserId.Text.Trim() } });
-            DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints, vitals=@vitals, maxvitals=@maxvitals WHERE id=@id;",
+            DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints, vitals=@vitals, maxvitals=@maxvitals, stats=@stats WHERE id=@id;",
                 new Dictionary<String, Object>() { { "@name", accCharName.Text.Trim() }, { "@map", Maps[(String)accCharMap.SelectedItem] }, { "@x", accCharX.Text.Trim() }, { "@y", accCharY.Text.Trim() }, { "@z", accCharZ.SelectedIndex }, { "@dir", accCharDirection.SelectedIndex }, { "@sprite", accCharSprite.Text.Trim() }, { "@face", accCharFace.Text.Trim() },
                     { "@class", Classes[(String)accCharClass.SelectedItem] }, { "@gender", accCharGender.SelectedIndex }, { "@level", accCharLevel.Text.Trim() }, { "@exp", accCharExp.Text.Trim() }, { "@statpoints", accCharStatpoints.Text.Trim() }, { "@id", accCharId.Text.Trim() }, { "@vitals", String.Join(",", CurVitals.Select(x=>x.ToString())) },
-                    { "@maxvitals", String.Join(",", MaxVitals.Select(x=>x.ToString())) }});
+                    { "@maxvitals", String.Join(",", MaxVitals.Select(x=>x.ToString())) }, { "@stats", String.Join(",", Stats.Select(x=>x.ToString())) }});
         }
         private void accCharMaxVital_SelectedIndexChanged(object sender, EventArgs e) {
             accCharMaxVitalValue.Text = MaxVitals[accCharMaxVital.SelectedIndex].ToString();
@@ -171,6 +177,16 @@ namespace IntersectToolkit {
                 accCharCurVitalValue.Text = accCharMaxVitalValue.Text;
             }
             CurVitals[accCharCurVital.SelectedIndex] = accCharCurVitalValue.Text.ToInt32();
+        }
+        private void accCharLevel_TextChanged(object sender, EventArgs e) {
+            if (accCharLevel.Text.ToInt32() > Options.MaxLevel) accCharLevel.Text = Options.MaxLevel.ToString();
+        }
+        private void accCharStatValue_TextChanged(object sender, EventArgs e) {
+            if (accCharStatValue.Text.ToInt32() > Options.MaxStatValue) accCharStatValue.Text = Options.MaxStatValue.ToString();
+            Stats[accCharStat.SelectedIndex] = accCharStatValue.Text.ToInt32();
+        }
+        private void accCharStat_SelectedIndexChanged(object sender, EventArgs e) {
+            accCharStatValue.Text = Stats[accCharStat.SelectedIndex].ToString();
         }
         #endregion
 
@@ -312,6 +328,5 @@ namespace IntersectToolkit {
         #endregion
 
         #endregion
-
     }
 }
