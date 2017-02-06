@@ -22,6 +22,7 @@ namespace IntersectToolkit {
         private Dictionary<String, Int64> Tilesets = new Dictionary<String, Int64>();
         private Dictionary<String, Int64> Maps = new Dictionary<String, Int64>();
         private Dictionary<String, Int64> Classes = new Dictionary<String, Int64>();
+        private Dictionary<String, Int64> Items = new Dictionary<String, Int64>();
         private Int32[] CurVitals;
         private Int32[] MaxVitals;
         private Int32[] Stats;
@@ -44,6 +45,8 @@ namespace IntersectToolkit {
             Options.MapHeight = Int32.Parse(config["Config"]["Map"]["MapHeight"].InnerXml);
             Options.MaxStatValue = Int32.Parse(config["Config"]["Player"]["MaxStat"].InnerXml);
             Options.MaxLevel = Int32.Parse(config["Config"]["Player"]["MaxLevel"].InnerXml);
+            Options.MaxInvItems = Int32.Parse(config["Config"]["Player"]["MaxInventory"].InnerXml);
+            foreach (var x in Enumerable.Range(1, Options.MaxInvItems)) { accInvSlot.Items.Add(x); }
         }
         #endregion
 
@@ -52,6 +55,7 @@ namespace IntersectToolkit {
         private void RefreshDB() {
             RefreshMaps();
             RefreshClasses();
+            RefreshItems();
             RefreshAccounts();
             RefreshTilesets();
         }
@@ -74,7 +78,7 @@ namespace IntersectToolkit {
         private void RefreshMaps() {
             Maps.Clear();
             accCharMap.Items.Clear();
-            foreach (var m in DBHandler.ExecuteQuery<Maps>("SELECT * FROM maps WHERE deleted=0")) {
+            foreach (var m in DBHandler.ExecuteQuery<BlobObject>("SELECT * FROM maps WHERE deleted=0")) {
                 var x = new MapBase((Int32)m.id, true);
                 x.Load(m.data);
                 Maps.Add(x.MyName, m.id);
@@ -84,11 +88,22 @@ namespace IntersectToolkit {
         private void RefreshClasses() {
             Classes.Clear();
             accCharClass.Items.Clear();
-            foreach (var c in DBHandler.ExecuteQuery<Maps>("SELECT * FROM classes WHERE deleted=0")) {
+            foreach (var c in DBHandler.ExecuteQuery<BlobObject>("SELECT * FROM classes WHERE deleted=0")) {
                 var x = new ClassBase((Int32)c.id);
                 x.Load(c.data);
                 Classes.Add(x.Name, c.id);
                 accCharClass.Items.Add(x.Name);
+            }
+        }
+        private void RefreshItems() {
+            Items.Clear();
+            Items.Add("None", -1);
+            accInvItem.Items.Add("None");
+            foreach (var i in DBHandler.ExecuteQuery<BlobObject>("SELECT * FROM items WHERE deleted=0")) {
+                var x = new ItemBase((Int32)i.id);
+                x.Load(i.data);
+                Items.Add(x.Name, i.id);
+                accInvItem.Items.Add(x.Name);
             }
         }
         #endregion
@@ -328,5 +343,6 @@ namespace IntersectToolkit {
         #endregion
 
         #endregion
+
     }
 }

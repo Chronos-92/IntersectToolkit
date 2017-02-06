@@ -28,32 +28,10 @@
             this.tdatabase = new System.Windows.Forms.TabControl();
             this.tabaccounts = new System.Windows.Forms.TabPage();
             this.accCharBox = new System.Windows.Forms.GroupBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.accCharCurVitalValue = new System.Windows.Forms.TextBox();
-            this.accCharCurVital = new System.Windows.Forms.ComboBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.accCharMaxVitalValue = new System.Windows.Forms.TextBox();
-            this.accCharMaxVital = new System.Windows.Forms.ComboBox();
-            this.accCharClass = new System.Windows.Forms.ComboBox();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.accCharMap = new System.Windows.Forms.ComboBox();
-            this.accCharGender = new System.Windows.Forms.ComboBox();
-            this.accCharStatpoints = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.accCharExp = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.accCharLevel = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.accCharFace = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.accCharSprite = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.accCharZ = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -63,10 +41,28 @@
             this.accCharX = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.accCharFace = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.accCharSprite = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.accCharClass = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.accCharGender = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.accCharName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.accCharId = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.accCharExp = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.accCharLevel = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.accUserSaveChanges = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.accUserSalt = new System.Windows.Forms.TextBox();
@@ -118,19 +114,41 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.resizeInput = new System.Windows.Forms.TextBox();
             this.resizeInputBrowse = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.accCharStatValue = new System.Windows.Forms.TextBox();
             this.accCharStat = new System.Windows.Forms.ComboBox();
+            this.accCharStatpoints = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.accCharCurVitalValue = new System.Windows.Forms.TextBox();
+            this.accCharCurVital = new System.Windows.Forms.ComboBox();
+            this.accInvValue = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.accInvItem = new System.Windows.Forms.ComboBox();
+            this.accInvSlot = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.accCharMaxVitalValue = new System.Windows.Forms.TextBox();
+            this.accCharMaxVital = new System.Windows.Forms.ComboBox();
             this.TabsMain.SuspendLayout();
             this.tabdatabase.SuspendLayout();
             this.tdatabase.SuspendLayout();
             this.tabaccounts.SuspendLayout();
             this.accCharBox.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabTilesets.SuspendLayout();
@@ -143,7 +161,8 @@
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabsMain
@@ -197,35 +216,7 @@
             // 
             // accCharBox
             // 
-            this.accCharBox.Controls.Add(this.tabControl1);
-            this.accCharBox.Controls.Add(this.accCharClass);
-            this.accCharBox.Controls.Add(this.accCharMap);
-            this.accCharBox.Controls.Add(this.accCharGender);
-            this.accCharBox.Controls.Add(this.accCharStatpoints);
-            this.accCharBox.Controls.Add(this.label20);
-            this.accCharBox.Controls.Add(this.accCharExp);
-            this.accCharBox.Controls.Add(this.label19);
-            this.accCharBox.Controls.Add(this.accCharLevel);
-            this.accCharBox.Controls.Add(this.label18);
-            this.accCharBox.Controls.Add(this.label17);
-            this.accCharBox.Controls.Add(this.label16);
-            this.accCharBox.Controls.Add(this.accCharFace);
-            this.accCharBox.Controls.Add(this.label15);
-            this.accCharBox.Controls.Add(this.accCharSprite);
-            this.accCharBox.Controls.Add(this.label14);
-            this.accCharBox.Controls.Add(this.label13);
-            this.accCharBox.Controls.Add(this.accCharZ);
-            this.accCharBox.Controls.Add(this.label12);
-            this.accCharBox.Controls.Add(this.accCharDirection);
-            this.accCharBox.Controls.Add(this.accCharY);
-            this.accCharBox.Controls.Add(this.label11);
-            this.accCharBox.Controls.Add(this.accCharX);
-            this.accCharBox.Controls.Add(this.label10);
-            this.accCharBox.Controls.Add(this.label9);
-            this.accCharBox.Controls.Add(this.accCharName);
-            this.accCharBox.Controls.Add(this.label8);
-            this.accCharBox.Controls.Add(this.accCharId);
-            this.accCharBox.Controls.Add(this.label7);
+            this.accCharBox.Controls.Add(this.tabControl3);
             this.accCharBox.Location = new System.Drawing.Point(132, 144);
             this.accCharBox.Name = "accCharBox";
             this.accCharBox.Size = new System.Drawing.Size(594, 261);
@@ -233,259 +224,65 @@
             this.accCharBox.TabStop = false;
             this.accCharBox.Text = "Character";
             // 
-            // tabControl1
+            // tabControl3
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(291, 153);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(297, 100);
-            this.tabControl1.TabIndex = 36;
+            this.tabControl3.Controls.Add(this.tabPage6);
+            this.tabControl3.Controls.Add(this.tabPage7);
+            this.tabControl3.Controls.Add(this.tabPage8);
+            this.tabControl3.Controls.Add(this.tabPage9);
+            this.tabControl3.Location = new System.Drawing.Point(9, 19);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(579, 227);
+            this.tabControl3.TabIndex = 37;
             // 
-            // tabPage1
+            // tabPage6
             // 
-            this.tabPage1.Controls.Add(this.label28);
-            this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.accCharCurVitalValue);
-            this.tabPage1.Controls.Add(this.accCharCurVital);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(289, 74);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Vitals";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage6.Controls.Add(this.groupBox9);
+            this.tabPage6.Controls.Add(this.groupBox8);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(571, 201);
+            this.tabPage6.TabIndex = 0;
+            this.tabPage6.Text = "General Info";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // label28
+            // groupBox9
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(6, 46);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(37, 13);
-            this.label28.TabIndex = 45;
-            this.label28.Text = "Value:";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(6, 16);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(30, 13);
-            this.label29.TabIndex = 44;
-            this.label29.Text = "Vital:";
-            // 
-            // accCharCurVitalValue
-            // 
-            this.accCharCurVitalValue.Location = new System.Drawing.Point(119, 39);
-            this.accCharCurVitalValue.Name = "accCharCurVitalValue";
-            this.accCharCurVitalValue.Size = new System.Drawing.Size(162, 20);
-            this.accCharCurVitalValue.TabIndex = 43;
-            this.accCharCurVitalValue.TextChanged += new System.EventHandler(this.accCharCurVitalValue_TextChanged);
-            // 
-            // accCharCurVital
-            // 
-            this.accCharCurVital.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accCharCurVital.FormattingEnabled = true;
-            this.accCharCurVital.Items.AddRange(new object[] {
-            "Health",
-            "Mana"});
-            this.accCharCurVital.Location = new System.Drawing.Point(119, 12);
-            this.accCharCurVital.Name = "accCharCurVital";
-            this.accCharCurVital.Size = new System.Drawing.Size(162, 21);
-            this.accCharCurVital.TabIndex = 42;
-            this.accCharCurVital.SelectedIndexChanged += new System.EventHandler(this.accCharCurVital_SelectedIndexChanged);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.label27);
-            this.tabPage3.Controls.Add(this.label26);
-            this.tabPage3.Controls.Add(this.accCharMaxVitalValue);
-            this.tabPage3.Controls.Add(this.accCharMaxVital);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(289, 74);
-            this.tabPage3.TabIndex = 1;
-            this.tabPage3.Text = "Max Vitals";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 46);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(37, 13);
-            this.label27.TabIndex = 41;
-            this.label27.Text = "Value:";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(6, 16);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(30, 13);
-            this.label26.TabIndex = 40;
-            this.label26.Text = "Vital:";
-            // 
-            // accCharMaxVitalValue
-            // 
-            this.accCharMaxVitalValue.Location = new System.Drawing.Point(119, 39);
-            this.accCharMaxVitalValue.Name = "accCharMaxVitalValue";
-            this.accCharMaxVitalValue.Size = new System.Drawing.Size(162, 20);
-            this.accCharMaxVitalValue.TabIndex = 39;
-            this.accCharMaxVitalValue.TextChanged += new System.EventHandler(this.accCharMaxVitalValue_TextChanged);
-            // 
-            // accCharMaxVital
-            // 
-            this.accCharMaxVital.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accCharMaxVital.FormattingEnabled = true;
-            this.accCharMaxVital.Items.AddRange(new object[] {
-            "Health",
-            "Mana"});
-            this.accCharMaxVital.Location = new System.Drawing.Point(119, 12);
-            this.accCharMaxVital.Name = "accCharMaxVital";
-            this.accCharMaxVital.Size = new System.Drawing.Size(162, 21);
-            this.accCharMaxVital.TabIndex = 38;
-            this.accCharMaxVital.SelectedIndexChanged += new System.EventHandler(this.accCharMaxVital_SelectedIndexChanged);
-            // 
-            // accCharClass
-            // 
-            this.accCharClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accCharClass.FormattingEnabled = true;
-            this.accCharClass.Location = new System.Drawing.Point(426, 22);
-            this.accCharClass.Name = "accCharClass";
-            this.accCharClass.Size = new System.Drawing.Size(162, 21);
-            this.accCharClass.TabIndex = 35;
+            this.groupBox9.Controls.Add(this.accCharMap);
+            this.groupBox9.Controls.Add(this.label13);
+            this.groupBox9.Controls.Add(this.accCharZ);
+            this.groupBox9.Controls.Add(this.label12);
+            this.groupBox9.Controls.Add(this.accCharDirection);
+            this.groupBox9.Controls.Add(this.accCharY);
+            this.groupBox9.Controls.Add(this.label11);
+            this.groupBox9.Controls.Add(this.accCharX);
+            this.groupBox9.Controls.Add(this.label10);
+            this.groupBox9.Controls.Add(this.label9);
+            this.groupBox9.Location = new System.Drawing.Point(288, 6);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(275, 189);
+            this.groupBox9.TabIndex = 1;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Position";
             // 
             // accCharMap
             // 
             this.accCharMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.accCharMap.FormattingEnabled = true;
-            this.accCharMap.Location = new System.Drawing.Point(108, 71);
+            this.accCharMap.Location = new System.Drawing.Point(107, 20);
             this.accCharMap.Name = "accCharMap";
             this.accCharMap.Size = new System.Drawing.Size(162, 21);
-            this.accCharMap.TabIndex = 34;
-            // 
-            // accCharGender
-            // 
-            this.accCharGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accCharGender.FormattingEnabled = true;
-            this.accCharGender.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
-            this.accCharGender.Location = new System.Drawing.Point(426, 48);
-            this.accCharGender.Name = "accCharGender";
-            this.accCharGender.Size = new System.Drawing.Size(162, 21);
-            this.accCharGender.TabIndex = 33;
-            // 
-            // accCharStatpoints
-            // 
-            this.accCharStatpoints.Location = new System.Drawing.Point(426, 127);
-            this.accCharStatpoints.Name = "accCharStatpoints";
-            this.accCharStatpoints.Size = new System.Drawing.Size(162, 20);
-            this.accCharStatpoints.TabIndex = 32;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(324, 130);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(57, 13);
-            this.label20.TabIndex = 31;
-            this.label20.Text = "Statpoints:";
-            // 
-            // accCharExp
-            // 
-            this.accCharExp.Location = new System.Drawing.Point(426, 101);
-            this.accCharExp.Name = "accCharExp";
-            this.accCharExp.Size = new System.Drawing.Size(162, 20);
-            this.accCharExp.TabIndex = 30;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(324, 104);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(28, 13);
-            this.label19.TabIndex = 29;
-            this.label19.Text = "Exp:";
-            // 
-            // accCharLevel
-            // 
-            this.accCharLevel.Location = new System.Drawing.Point(426, 74);
-            this.accCharLevel.Name = "accCharLevel";
-            this.accCharLevel.Size = new System.Drawing.Size(162, 20);
-            this.accCharLevel.TabIndex = 28;
-            this.accCharLevel.TextChanged += new System.EventHandler(this.accCharLevel_TextChanged);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(324, 77);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(36, 13);
-            this.label18.TabIndex = 27;
-            this.label18.Text = "Level:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(324, 51);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 13);
-            this.label17.TabIndex = 25;
-            this.label17.Text = "Gender:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(324, 25);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(35, 13);
-            this.label16.TabIndex = 23;
-            this.label16.Text = "Class:";
-            // 
-            // accCharFace
-            // 
-            this.accCharFace.Location = new System.Drawing.Point(108, 230);
-            this.accCharFace.Name = "accCharFace";
-            this.accCharFace.Size = new System.Drawing.Size(162, 20);
-            this.accCharFace.TabIndex = 22;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 233);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(34, 13);
-            this.label15.TabIndex = 21;
-            this.label15.Text = "Face:";
-            // 
-            // accCharSprite
-            // 
-            this.accCharSprite.Location = new System.Drawing.Point(108, 204);
-            this.accCharSprite.Name = "accCharSprite";
-            this.accCharSprite.Size = new System.Drawing.Size(162, 20);
-            this.accCharSprite.TabIndex = 19;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 207);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(37, 13);
-            this.label14.TabIndex = 18;
-            this.label14.Text = "Sprite:";
+            this.accCharMap.TabIndex = 44;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 153);
+            this.label13.Location = new System.Drawing.Point(6, 104);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(17, 13);
-            this.label13.TabIndex = 17;
+            this.label13.TabIndex = 43;
             this.label13.Text = "Z:";
             // 
             // accCharZ
@@ -495,18 +292,18 @@
             this.accCharZ.Items.AddRange(new object[] {
             "Lower",
             "Upper"});
-            this.accCharZ.Location = new System.Drawing.Point(108, 150);
+            this.accCharZ.Location = new System.Drawing.Point(107, 101);
             this.accCharZ.Name = "accCharZ";
             this.accCharZ.Size = new System.Drawing.Size(162, 21);
-            this.accCharZ.TabIndex = 16;
+            this.accCharZ.TabIndex = 42;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 180);
+            this.label12.Location = new System.Drawing.Point(6, 131);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 13);
-            this.label12.TabIndex = 15;
+            this.label12.TabIndex = 41;
             this.label12.Text = "Direction:";
             // 
             // accCharDirection
@@ -518,84 +315,277 @@
             "Down",
             "Left",
             "Right"});
-            this.accCharDirection.Location = new System.Drawing.Point(108, 177);
+            this.accCharDirection.Location = new System.Drawing.Point(107, 128);
             this.accCharDirection.Name = "accCharDirection";
             this.accCharDirection.Size = new System.Drawing.Size(162, 21);
-            this.accCharDirection.TabIndex = 14;
+            this.accCharDirection.TabIndex = 40;
             // 
             // accCharY
             // 
-            this.accCharY.Location = new System.Drawing.Point(108, 124);
+            this.accCharY.Location = new System.Drawing.Point(107, 76);
             this.accCharY.Name = "accCharY";
             this.accCharY.Size = new System.Drawing.Size(162, 20);
-            this.accCharY.TabIndex = 13;
+            this.accCharY.TabIndex = 39;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 127);
+            this.label11.Location = new System.Drawing.Point(6, 78);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(17, 13);
-            this.label11.TabIndex = 12;
+            this.label11.TabIndex = 38;
             this.label11.Text = "Y:";
             // 
             // accCharX
             // 
-            this.accCharX.Location = new System.Drawing.Point(108, 98);
+            this.accCharX.Location = new System.Drawing.Point(107, 49);
             this.accCharX.Name = "accCharX";
             this.accCharX.Size = new System.Drawing.Size(162, 20);
-            this.accCharX.TabIndex = 11;
+            this.accCharX.TabIndex = 37;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 101);
+            this.label10.Location = new System.Drawing.Point(6, 52);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 13);
-            this.label10.TabIndex = 10;
+            this.label10.TabIndex = 36;
             this.label10.Text = "X:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 74);
+            this.label9.Location = new System.Drawing.Point(6, 25);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(31, 13);
-            this.label9.TabIndex = 9;
+            this.label9.TabIndex = 35;
             this.label9.Text = "Map:";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.accCharFace);
+            this.groupBox8.Controls.Add(this.label15);
+            this.groupBox8.Controls.Add(this.accCharSprite);
+            this.groupBox8.Controls.Add(this.label14);
+            this.groupBox8.Controls.Add(this.accCharClass);
+            this.groupBox8.Controls.Add(this.label16);
+            this.groupBox8.Controls.Add(this.accCharGender);
+            this.groupBox8.Controls.Add(this.label17);
+            this.groupBox8.Controls.Add(this.accCharName);
+            this.groupBox8.Controls.Add(this.label8);
+            this.groupBox8.Controls.Add(this.accCharId);
+            this.groupBox8.Controls.Add(this.label7);
+            this.groupBox8.Location = new System.Drawing.Point(6, 6);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(275, 189);
+            this.groupBox8.TabIndex = 0;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "General";
+            // 
+            // accCharFace
+            // 
+            this.accCharFace.Location = new System.Drawing.Point(107, 154);
+            this.accCharFace.Name = "accCharFace";
+            this.accCharFace.Size = new System.Drawing.Size(162, 20);
+            this.accCharFace.TabIndex = 41;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 157);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(34, 13);
+            this.label15.TabIndex = 40;
+            this.label15.Text = "Face:";
+            // 
+            // accCharSprite
+            // 
+            this.accCharSprite.Location = new System.Drawing.Point(107, 128);
+            this.accCharSprite.Name = "accCharSprite";
+            this.accCharSprite.Size = new System.Drawing.Size(162, 20);
+            this.accCharSprite.TabIndex = 39;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 131);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.TabIndex = 38;
+            this.label14.Text = "Sprite:";
+            // 
+            // accCharClass
+            // 
+            this.accCharClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharClass.FormattingEnabled = true;
+            this.accCharClass.Location = new System.Drawing.Point(107, 101);
+            this.accCharClass.Name = "accCharClass";
+            this.accCharClass.Size = new System.Drawing.Size(162, 21);
+            this.accCharClass.TabIndex = 37;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 104);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(35, 13);
+            this.label16.TabIndex = 36;
+            this.label16.Text = "Class:";
+            // 
+            // accCharGender
+            // 
+            this.accCharGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharGender.FormattingEnabled = true;
+            this.accCharGender.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.accCharGender.Location = new System.Drawing.Point(107, 75);
+            this.accCharGender.Name = "accCharGender";
+            this.accCharGender.Size = new System.Drawing.Size(162, 21);
+            this.accCharGender.TabIndex = 35;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 77);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(45, 13);
+            this.label17.TabIndex = 34;
+            this.label17.Text = "Gender:";
             // 
             // accCharName
             // 
-            this.accCharName.Location = new System.Drawing.Point(108, 45);
+            this.accCharName.Location = new System.Drawing.Point(107, 47);
             this.accCharName.Name = "accCharName";
             this.accCharName.Size = new System.Drawing.Size(162, 20);
-            this.accCharName.TabIndex = 5;
+            this.accCharName.TabIndex = 7;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 48);
+            this.label8.Location = new System.Drawing.Point(6, 50);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
-            this.label8.TabIndex = 4;
+            this.label8.TabIndex = 6;
             this.label8.Text = "Name:";
             // 
             // accCharId
             // 
             this.accCharId.Enabled = false;
-            this.accCharId.Location = new System.Drawing.Point(108, 19);
+            this.accCharId.Location = new System.Drawing.Point(107, 21);
             this.accCharId.Name = "accCharId";
             this.accCharId.Size = new System.Drawing.Size(162, 20);
-            this.accCharId.TabIndex = 3;
+            this.accCharId.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 22);
+            this.label7.Location = new System.Drawing.Point(6, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 13);
-            this.label7.TabIndex = 2;
+            this.label7.TabIndex = 4;
             this.label7.Text = "Character Id:";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.groupBox13);
+            this.tabPage7.Controls.Add(this.groupBox12);
+            this.tabPage7.Controls.Add(this.groupBox11);
+            this.tabPage7.Controls.Add(this.groupBox10);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(571, 201);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "Statistics";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.accCharStatpoints);
+            this.groupBox11.Controls.Add(this.label20);
+            this.groupBox11.Controls.Add(this.label30);
+            this.groupBox11.Controls.Add(this.label31);
+            this.groupBox11.Controls.Add(this.accCharStatValue);
+            this.groupBox11.Controls.Add(this.accCharStat);
+            this.groupBox11.Location = new System.Drawing.Point(290, 6);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(275, 100);
+            this.groupBox11.TabIndex = 45;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Stats";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.accCharExp);
+            this.groupBox10.Controls.Add(this.label19);
+            this.groupBox10.Controls.Add(this.accCharLevel);
+            this.groupBox10.Controls.Add(this.label18);
+            this.groupBox10.Location = new System.Drawing.Point(6, 6);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(275, 100);
+            this.groupBox10.TabIndex = 44;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Levels and Experience";
+            // 
+            // accCharExp
+            // 
+            this.accCharExp.Location = new System.Drawing.Point(107, 46);
+            this.accCharExp.Name = "accCharExp";
+            this.accCharExp.Size = new System.Drawing.Size(162, 20);
+            this.accCharExp.TabIndex = 47;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 49);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(28, 13);
+            this.label19.TabIndex = 46;
+            this.label19.Text = "Exp:";
+            // 
+            // accCharLevel
+            // 
+            this.accCharLevel.Location = new System.Drawing.Point(107, 20);
+            this.accCharLevel.Name = "accCharLevel";
+            this.accCharLevel.Size = new System.Drawing.Size(162, 20);
+            this.accCharLevel.TabIndex = 45;
+            this.accCharLevel.TextChanged += new System.EventHandler(this.accCharLevel_TextChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(7, 22);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(36, 13);
+            this.label18.TabIndex = 44;
+            this.label18.Text = "Level:";
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.accInvValue);
+            this.tabPage8.Controls.Add(this.label34);
+            this.tabPage8.Controls.Add(this.label33);
+            this.tabPage8.Controls.Add(this.accInvItem);
+            this.tabPage8.Controls.Add(this.accInvSlot);
+            this.tabPage8.Controls.Add(this.label32);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(571, 201);
+            this.tabPage8.TabIndex = 2;
+            this.tabPage8.Text = "Inventory";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(571, 201);
+            this.tabPage9.TabIndex = 3;
+            this.tabPage9.Text = "Spells";
+            this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // accUserSaveChanges
             // 
@@ -1108,44 +1098,30 @@
             this.resizeInputBrowse.UseVisualStyleBackColor = true;
             this.resizeInputBrowse.Click += new System.EventHandler(this.resizeInputBrowse_Click);
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.label30);
-            this.tabPage4.Controls.Add(this.label31);
-            this.tabPage4.Controls.Add(this.accCharStatValue);
-            this.tabPage4.Controls.Add(this.accCharStat);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(289, 74);
-            this.tabPage4.TabIndex = 2;
-            this.tabPage4.Text = "Stats";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 46);
+            this.label30.Location = new System.Drawing.Point(6, 53);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(37, 13);
-            this.label30.TabIndex = 45;
+            this.label30.TabIndex = 49;
             this.label30.Text = "Value:";
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(6, 16);
+            this.label31.Location = new System.Drawing.Point(6, 23);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(29, 13);
-            this.label31.TabIndex = 44;
+            this.label31.TabIndex = 48;
             this.label31.Text = "Stat:";
             // 
             // accCharStatValue
             // 
-            this.accCharStatValue.Location = new System.Drawing.Point(119, 39);
+            this.accCharStatValue.Location = new System.Drawing.Point(107, 46);
             this.accCharStatValue.Name = "accCharStatValue";
             this.accCharStatValue.Size = new System.Drawing.Size(162, 20);
-            this.accCharStatValue.TabIndex = 43;
+            this.accCharStatValue.TabIndex = 47;
             this.accCharStatValue.TextChanged += new System.EventHandler(this.accCharStatValue_TextChanged);
             // 
             // accCharStat
@@ -1158,11 +1134,183 @@
             "Defense",
             "Magic Resistance",
             "Speed"});
-            this.accCharStat.Location = new System.Drawing.Point(119, 12);
+            this.accCharStat.Location = new System.Drawing.Point(107, 19);
             this.accCharStat.Name = "accCharStat";
             this.accCharStat.Size = new System.Drawing.Size(162, 21);
-            this.accCharStat.TabIndex = 42;
+            this.accCharStat.TabIndex = 46;
             this.accCharStat.SelectedIndexChanged += new System.EventHandler(this.accCharStat_SelectedIndexChanged);
+            // 
+            // accCharStatpoints
+            // 
+            this.accCharStatpoints.Location = new System.Drawing.Point(107, 72);
+            this.accCharStatpoints.Name = "accCharStatpoints";
+            this.accCharStatpoints.Size = new System.Drawing.Size(162, 20);
+            this.accCharStatpoints.TabIndex = 51;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 75);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(57, 13);
+            this.label20.TabIndex = 50;
+            this.label20.Text = "Statpoints:";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label28);
+            this.groupBox12.Controls.Add(this.label29);
+            this.groupBox12.Controls.Add(this.accCharCurVitalValue);
+            this.groupBox12.Controls.Add(this.accCharCurVital);
+            this.groupBox12.Location = new System.Drawing.Point(6, 112);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(275, 83);
+            this.groupBox12.TabIndex = 46;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Vitals";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(7, 54);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(37, 13);
+            this.label28.TabIndex = 49;
+            this.label28.Text = "Value:";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(7, 24);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(30, 13);
+            this.label29.TabIndex = 48;
+            this.label29.Text = "Vital:";
+            // 
+            // accCharCurVitalValue
+            // 
+            this.accCharCurVitalValue.Location = new System.Drawing.Point(107, 46);
+            this.accCharCurVitalValue.Name = "accCharCurVitalValue";
+            this.accCharCurVitalValue.Size = new System.Drawing.Size(162, 20);
+            this.accCharCurVitalValue.TabIndex = 47;
+            this.accCharCurVitalValue.TextChanged += new System.EventHandler(this.accCharCurVitalValue_TextChanged);
+            // 
+            // accCharCurVital
+            // 
+            this.accCharCurVital.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharCurVital.FormattingEnabled = true;
+            this.accCharCurVital.Items.AddRange(new object[] {
+            "Health",
+            "Mana"});
+            this.accCharCurVital.Location = new System.Drawing.Point(107, 19);
+            this.accCharCurVital.Name = "accCharCurVital";
+            this.accCharCurVital.Size = new System.Drawing.Size(162, 21);
+            this.accCharCurVital.TabIndex = 46;
+            this.accCharCurVital.SelectedIndexChanged += new System.EventHandler(this.accCharCurVital_SelectedIndexChanged);
+            // 
+            // accInvValue
+            // 
+            this.accInvValue.Location = new System.Drawing.Point(283, 104);
+            this.accInvValue.Name = "accInvValue";
+            this.accInvValue.Size = new System.Drawing.Size(141, 20);
+            this.accInvValue.TabIndex = 53;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(240, 106);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(37, 13);
+            this.label34.TabIndex = 52;
+            this.label34.Text = "Value:";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(240, 80);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(30, 13);
+            this.label33.TabIndex = 51;
+            this.label33.Text = "Item:";
+            // 
+            // accInvItem
+            // 
+            this.accInvItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accInvItem.FormattingEnabled = true;
+            this.accInvItem.Location = new System.Drawing.Point(283, 77);
+            this.accInvItem.Name = "accInvItem";
+            this.accInvItem.Size = new System.Drawing.Size(141, 21);
+            this.accInvItem.TabIndex = 50;
+            // 
+            // accInvSlot
+            // 
+            this.accInvSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accInvSlot.FormattingEnabled = true;
+            this.accInvSlot.Location = new System.Drawing.Point(182, 77);
+            this.accInvSlot.Name = "accInvSlot";
+            this.accInvSlot.Size = new System.Drawing.Size(52, 21);
+            this.accInvSlot.TabIndex = 49;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(147, 80);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(28, 13);
+            this.label32.TabIndex = 48;
+            this.label32.Text = "Slot:";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.label27);
+            this.groupBox13.Controls.Add(this.label26);
+            this.groupBox13.Controls.Add(this.accCharMaxVitalValue);
+            this.groupBox13.Controls.Add(this.accCharMaxVital);
+            this.groupBox13.Location = new System.Drawing.Point(290, 112);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(275, 83);
+            this.groupBox13.TabIndex = 47;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Max Vitals";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(5, 54);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(37, 13);
+            this.label27.TabIndex = 45;
+            this.label27.Text = "Value:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(5, 24);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(30, 13);
+            this.label26.TabIndex = 44;
+            this.label26.Text = "Vital:";
+            // 
+            // accCharMaxVitalValue
+            // 
+            this.accCharMaxVitalValue.Location = new System.Drawing.Point(107, 46);
+            this.accCharMaxVitalValue.Name = "accCharMaxVitalValue";
+            this.accCharMaxVitalValue.Size = new System.Drawing.Size(162, 20);
+            this.accCharMaxVitalValue.TabIndex = 43;
+            this.accCharMaxVitalValue.TextChanged += new System.EventHandler(this.accCharMaxVitalValue_TextChanged);
+            // 
+            // accCharMaxVital
+            // 
+            this.accCharMaxVital.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accCharMaxVital.FormattingEnabled = true;
+            this.accCharMaxVital.Items.AddRange(new object[] {
+            "Health",
+            "Mana"});
+            this.accCharMaxVital.Location = new System.Drawing.Point(107, 19);
+            this.accCharMaxVital.Name = "accCharMaxVital";
+            this.accCharMaxVital.Size = new System.Drawing.Size(162, 21);
+            this.accCharMaxVital.TabIndex = 42;
+            this.accCharMaxVital.SelectedIndexChanged += new System.EventHandler(this.accCharMaxVital_SelectedIndexChanged);
             // 
             // MainWindow
             // 
@@ -1182,12 +1330,19 @@
             this.tdatabase.ResumeLayout(false);
             this.tabaccounts.ResumeLayout(false);
             this.accCharBox.ResumeLayout(false);
-            this.accCharBox.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1208,8 +1363,10 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1241,32 +1398,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button accUserSaveChanges;
         private System.Windows.Forms.GroupBox accCharBox;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox accCharName;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox accCharId;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox accCharSprite;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox accCharZ;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox accCharDirection;
-        private System.Windows.Forms.TextBox accCharY;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox accCharX;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox accCharGender;
-        private System.Windows.Forms.TextBox accCharStatpoints;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox accCharExp;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox accCharLevel;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox accCharFace;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button tilSaveChanges;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label23;
@@ -1287,8 +1418,6 @@
         private System.Windows.Forms.Button vxinBtnInput;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox vxinOutputDisplay;
-        private System.Windows.Forms.ComboBox accCharMap;
-        private System.Windows.Forms.ComboBox accCharClass;
         private System.Windows.Forms.ListBox resizeList;
         private System.Windows.Forms.Button resizeBtnGo;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -1300,22 +1429,63 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox resizeModifier;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox accCharCurVitalValue;
-        private System.Windows.Forms.ComboBox accCharCurVital;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.ComboBox accCharMap;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox accCharZ;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox accCharDirection;
+        private System.Windows.Forms.TextBox accCharY;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox accCharX;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox accCharFace;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox accCharSprite;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox accCharClass;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox accCharGender;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox accCharName;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox accCharId;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox accCharExp;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox accCharLevel;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox accCharMaxVitalValue;
         private System.Windows.Forms.ComboBox accCharMaxVital;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox accCharCurVitalValue;
+        private System.Windows.Forms.ComboBox accCharCurVital;
+        private System.Windows.Forms.TextBox accCharStatpoints;
+        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox accCharStatValue;
         private System.Windows.Forms.ComboBox accCharStat;
+        private System.Windows.Forms.TextBox accInvValue;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ComboBox accInvItem;
+        private System.Windows.Forms.ComboBox accInvSlot;
+        private System.Windows.Forms.Label label32;
     }
 }
 
