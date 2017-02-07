@@ -78,6 +78,17 @@
             this.accCharLevel = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.accEquipItem = new System.Windows.Forms.ComboBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.accEquipSlot = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.accInvValue = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.accInvItem = new System.Windows.Forms.ComboBox();
+            this.accInvSlot = new System.Windows.Forms.ListBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.accUserSaveChanges = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -130,12 +141,7 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.resizeInput = new System.Windows.Forms.TextBox();
             this.resizeInputBrowse = new System.Windows.Forms.Button();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.accInvSlot = new System.Windows.Forms.ListBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.accInvItem = new System.Windows.Forms.ComboBox();
-            this.accInvValue = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.TabsMain.SuspendLayout();
             this.tabdatabase.SuspendLayout();
             this.tdatabase.SuspendLayout();
@@ -151,6 +157,9 @@
             this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.groupBox15.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.tabPage9.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabTilesets.SuspendLayout();
@@ -163,7 +172,6 @@
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox14.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabsMain
@@ -726,6 +734,7 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.groupBox15);
             this.tabPage8.Controls.Add(this.groupBox14);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
@@ -735,8 +744,119 @@
             this.tabPage8.Text = "Inventory";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.accEquipItem);
+            this.groupBox15.Controls.Add(this.label35);
+            this.groupBox15.Controls.Add(this.accEquipSlot);
+            this.groupBox15.Controls.Add(this.label32);
+            this.groupBox15.Location = new System.Drawing.Point(346, 6);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(219, 189);
+            this.groupBox15.TabIndex = 55;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Equipment";
+            // 
+            // accEquipItem
+            // 
+            this.accEquipItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accEquipItem.FormattingEnabled = true;
+            this.accEquipItem.Location = new System.Drawing.Point(10, 77);
+            this.accEquipItem.Name = "accEquipItem";
+            this.accEquipItem.Size = new System.Drawing.Size(203, 21);
+            this.accEquipItem.TabIndex = 9;
+            this.accEquipItem.SelectedIndexChanged += new System.EventHandler(this.accEquipItem_SelectedIndexChanged);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(7, 61);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(78, 13);
+            this.label35.TabIndex = 8;
+            this.label35.Text = "Equipped Item:";
+            // 
+            // accEquipSlot
+            // 
+            this.accEquipSlot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accEquipSlot.FormattingEnabled = true;
+            this.accEquipSlot.Location = new System.Drawing.Point(10, 37);
+            this.accEquipSlot.Name = "accEquipSlot";
+            this.accEquipSlot.Size = new System.Drawing.Size(203, 21);
+            this.accEquipSlot.TabIndex = 7;
+            this.accEquipSlot.SelectedIndexChanged += new System.EventHandler(this.accEquipSlot_SelectedIndexChanged);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(7, 21);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(81, 13);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "Equipment Slot:";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.accInvValue);
+            this.groupBox14.Controls.Add(this.label34);
+            this.groupBox14.Controls.Add(this.label33);
+            this.groupBox14.Controls.Add(this.accInvItem);
+            this.groupBox14.Controls.Add(this.accInvSlot);
+            this.groupBox14.Location = new System.Drawing.Point(6, 6);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(334, 189);
+            this.groupBox14.TabIndex = 54;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Inventory";
+            // 
+            // accInvValue
+            // 
+            this.accInvValue.Location = new System.Drawing.Point(208, 46);
+            this.accInvValue.Name = "accInvValue";
+            this.accInvValue.Size = new System.Drawing.Size(117, 20);
+            this.accInvValue.TabIndex = 55;
+            this.accInvValue.TextChanged += new System.EventHandler(this.accInvValue_TextChanged);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(165, 49);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(37, 13);
+            this.label34.TabIndex = 54;
+            this.label34.Text = "Value:";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(165, 22);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(30, 13);
+            this.label33.TabIndex = 53;
+            this.label33.Text = "Item:";
+            // 
+            // accInvItem
+            // 
+            this.accInvItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accInvItem.FormattingEnabled = true;
+            this.accInvItem.Location = new System.Drawing.Point(208, 19);
+            this.accInvItem.Name = "accInvItem";
+            this.accInvItem.Size = new System.Drawing.Size(117, 21);
+            this.accInvItem.TabIndex = 52;
+            this.accInvItem.SelectedIndexChanged += new System.EventHandler(this.accInvItem_SelectedIndexChanged);
+            // 
+            // accInvSlot
+            // 
+            this.accInvSlot.FormattingEnabled = true;
+            this.accInvSlot.Location = new System.Drawing.Point(6, 19);
+            this.accInvSlot.Name = "accInvSlot";
+            this.accInvSlot.Size = new System.Drawing.Size(153, 160);
+            this.accInvSlot.TabIndex = 0;
+            this.accInvSlot.SelectedIndexChanged += new System.EventHandler(this.accInvSlot_SelectedIndexChanged);
+            // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.label36);
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
@@ -1256,64 +1376,15 @@
             this.resizeInputBrowse.UseVisualStyleBackColor = true;
             this.resizeInputBrowse.Click += new System.EventHandler(this.resizeInputBrowse_Click);
             // 
-            // groupBox14
+            // label36
             // 
-            this.groupBox14.Controls.Add(this.accInvValue);
-            this.groupBox14.Controls.Add(this.label34);
-            this.groupBox14.Controls.Add(this.label33);
-            this.groupBox14.Controls.Add(this.accInvItem);
-            this.groupBox14.Controls.Add(this.accInvSlot);
-            this.groupBox14.Location = new System.Drawing.Point(6, 6);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(334, 189);
-            this.groupBox14.TabIndex = 54;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Inventory";
-            // 
-            // accInvSlot
-            // 
-            this.accInvSlot.FormattingEnabled = true;
-            this.accInvSlot.Location = new System.Drawing.Point(6, 19);
-            this.accInvSlot.Name = "accInvSlot";
-            this.accInvSlot.Size = new System.Drawing.Size(153, 160);
-            this.accInvSlot.TabIndex = 0;
-            this.accInvSlot.SelectedIndexChanged += new System.EventHandler(this.accInvSlot_SelectedIndexChanged);
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(165, 22);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(30, 13);
-            this.label33.TabIndex = 53;
-            this.label33.Text = "Item:";
-            // 
-            // accInvItem
-            // 
-            this.accInvItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accInvItem.FormattingEnabled = true;
-            this.accInvItem.Location = new System.Drawing.Point(208, 19);
-            this.accInvItem.Name = "accInvItem";
-            this.accInvItem.Size = new System.Drawing.Size(117, 21);
-            this.accInvItem.TabIndex = 52;
-            this.accInvItem.SelectedIndexChanged += new System.EventHandler(this.accInvItem_SelectedIndexChanged);
-            // 
-            // accInvValue
-            // 
-            this.accInvValue.Location = new System.Drawing.Point(208, 46);
-            this.accInvValue.Name = "accInvValue";
-            this.accInvValue.Size = new System.Drawing.Size(117, 20);
-            this.accInvValue.TabIndex = 55;
-            this.accInvValue.TextChanged += new System.EventHandler(this.accInvValue_TextChanged);
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(165, 49);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(37, 13);
-            this.label34.TabIndex = 54;
-            this.label34.Text = "Value:";
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(163, 84);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(237, 31);
+            this.label36.TabIndex = 0;
+            this.label36.Text = "Work in Progress";
             // 
             // MainWindow
             // 
@@ -1349,6 +1420,12 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.tabPage8.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1369,8 +1446,6 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1490,6 +1565,12 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.ComboBox accInvItem;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.ComboBox accEquipItem;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.ComboBox accEquipSlot;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label36;
     }
 }
 

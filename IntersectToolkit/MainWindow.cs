@@ -27,6 +27,7 @@ namespace IntersectToolkit {
         private Int32[] MaxVitals;
         private Int32[] Stats;
         private Tuple<Int64, Int64>[] InvItems;
+        private Int64[] EquipItems;
 
         public MainWindow() {
             InitializeComponent();
@@ -48,6 +49,7 @@ namespace IntersectToolkit {
             Options.MaxLevel = Int32.Parse(config["Config"]["Player"]["MaxLevel"].InnerXml);
             Options.MaxInvItems = Int32.Parse(config["Config"]["Player"]["MaxInventory"].InnerXml);
             foreach (var x in Enumerable.Range(1, Options.MaxInvItems)) { accInvSlot.Items.Add(String.Format("{0}.", x)); }
+            foreach (XmlElement e in config["Config"]["Equipment"]) { if (e.Name.StartsWith("Slot")) { accEquipSlot.Items.Add(e.InnerXml); } }
         }
         #endregion
 
@@ -121,16 +123,23 @@ namespace IntersectToolkit {
             accInvSlot.SelectedIndex = slot;
         }
         private void RefreshInventoryList() {
-            accInvSlot.SelectedIndexChanged -= accInvSlot_SelectedIndexChanged;
             var slot = accInvSlot.SelectedIndex == -1 ? 0 : accInvSlot.SelectedIndex;
+            var slot2 = accEquipItem.SelectedIndex == -1 ? 0 : accEquipItem.SelectedIndex;
+            var slot3 = accEquipSlot.SelectedIndex == -1 ? 0 : accEquipSlot.SelectedIndex;
+            accInvSlot.SelectedIndexChanged -= accInvSlot_SelectedIndexChanged;
             accInvSlot.Items.Clear();
+            accEquipItem.Items.Clear();
+            accEquipItem.Items.Add("None");
             var t = new List<Tuple<Int64, Int64>>();
             var sl = 1;
             foreach (var s in InvItems) {
                 accInvSlot.Items.Add(String.Format("{0}. {1} x {2}", sl , s.Item2, Items.Where(i => i.Value == s.Item1).Select(i => i.Key).Single()));
+                accEquipItem.Items.Add(Items.Where(i => i.Value == s.Item1).Select(i => i.Key).Single());
                 sl++;
             }
             accInvSlot.SelectedIndex = slot;
+            accEquipItem.SelectedIndex = slot2;
+            accEquipSlot.SelectedIndex = slot3;
             accInvSlot.SelectedIndexChanged += accInvSlot_SelectedIndexChanged;
         }
         #endregion
@@ -188,6 +197,8 @@ namespace IntersectToolkit {
                 accCharExp.Text = chara.exp.ToString();
                 accCharStatpoints.Text = chara.statpoints.ToString();
 
+                EquipItems = chara.equipment.Split(',').Select(i=>i.ToInt64()).ToArray();
+
                 // Max before current, as we change current to max if current is higher.
                 MaxVitals = chara.maxvitals.Split(',').Select(x => x.ToInt32()).ToArray();
                 CurVitals = chara.vitals.Split(',').Select(x => x.ToInt32()).ToArray();
@@ -204,10 +215,10 @@ namespace IntersectToolkit {
             using (var tran = DBHandler.BeginTransaction()) {
                 try {
                     DBHandler.ExecuteNonQuery("UPDATE users SET user=@user, email=@email, power=@power WHERE id=@id;", new Dictionary<String, Object>() { { "@user", accUserName.Text.Trim() }, { "@email", accUserEmail.Text.Trim() }, { "@power", accUserAccess.SelectedIndex }, { "@id", accUserId.Text.Trim() } }, tran);
-                    DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints, vitals=@vitals, maxvitals=@maxvitals, stats=@stats WHERE id=@id;",
+                    DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints, vitals=@vitals, maxvitals=@maxvitals, stats=@stats, equipment=@equipment WHERE id=@id;",
                         new Dictionary<String, Object>() { { "@name", accCharName.Text.Trim() }, { "@map", Maps[(String)accCharMap.SelectedItem] }, { "@x", accCharX.Text.Trim() }, { "@y", accCharY.Text.Trim() }, { "@z", accCharZ.SelectedIndex }, { "@dir", accCharDirection.SelectedIndex }, { "@sprite", accCharSprite.Text.Trim() }, { "@face", accCharFace.Text.Trim() },
                     { "@class", Classes[(String)accCharClass.SelectedItem] }, { "@gender", accCharGender.SelectedIndex }, { "@level", accCharLevel.Text.Trim() }, { "@exp", accCharExp.Text.Trim() }, { "@statpoints", accCharStatpoints.Text.Trim() }, { "@id", accCharId.Text.Trim() }, { "@vitals", String.Join(",", CurVitals.Select(x=>x.ToString())) },
-                    { "@maxvitals", String.Join(",", MaxVitals.Select(x=>x.ToString())) }, { "@stats", String.Join(",", Stats.Select(x=>x.ToString())) }}, tran);
+                    { "@maxvitals", String.Join(",", MaxVitals.Select(x=>x.ToString())) }, { "@stats", String.Join(",", Stats.Select(x=>x.ToString())) }, { "@equipment", String.Join(",", EquipItems.Select(x=>x.ToString())) }}, tran);
                     var slot = 0;
                     foreach (var i in InvItems) {
                         DBHandler.ExecuteNonQuery("UPDATE char_inventory SET itemnum=@itemnum, itemval=@itemval WHERE char_id=@charid AND slot=@slot", new Dictionary<String, Object>() { { "@itemnum", i.Item1 }, { "@itemval", i.Item2 }, { "@charid", accCharId.Text }, { "@slot", slot } }, tran);
@@ -263,6 +274,15 @@ namespace IntersectToolkit {
             InvItems[slot] = new Tuple<Int64, Int64>(InvItems[slot].Item1, val);
             accInvValue.Text = val.ToString();
             RefreshInventoryList();
+        }
+        private void accEquipItem_SelectedIndexChanged(object sender, EventArgs e) {
+            if (accEquipSlot.SelectedIndex < 0) return;
+            EquipItems[accEquipSlot.SelectedIndex] = accEquipItem.SelectedIndex - 1;
+        }
+        private void accEquipSlot_SelectedIndexChanged(object sender, EventArgs e) {
+            if (EquipItems == null) return;
+            var invslot = EquipItems[accEquipSlot.SelectedIndex];
+            accEquipItem.SelectedItem = invslot < 0 ? "None" : Items.Where(x => x.Value == InvItems[invslot].Item1).Select(x => x.Key).Single();
         }
         #endregion
 
@@ -398,6 +418,7 @@ namespace IntersectToolkit {
                 w.RunWorkerAsync(new String[] { resizeInput.Text, resizeOutput.Text });
             }
         }
+
 
 
 
