@@ -66,7 +66,7 @@ namespace IntersectToolkit {
             foreach (var u in DBHandler.ExecuteQuery<Users>("SELECT * FROM users;")) {
                 lstAccounts.Items.Add(String.Format("{0}", u.user));
             }
-            if (lstAccounts.Items.Count > 0) lstAccounts.SelectedIndex = 0;
+            lstAccounts.SelectedIndex = 1; lstAccounts.SelectedIndex = 0;
         }
         private void RefreshTilesets() {
             lstTilesets.Items.Clear();
@@ -117,7 +117,21 @@ namespace IntersectToolkit {
                 accInvSlot.Items.Add(String.Format("{0}. {1} x {2}", s.slot + 1, s.itemval, Items.Where(i => i.Value == s.itemnum).Select(i => i.Key).SingleOrDefault()));
             }
             InvItems = t.ToArray();
+            accInvSlot.SelectedIndex = 1; accInvSlot.SelectedIndex = 0;
             accInvSlot.SelectedIndex = slot;
+        }
+        private void RefreshInventoryList() {
+            accInvSlot.SelectedIndexChanged -= accInvSlot_SelectedIndexChanged;
+            var slot = accInvSlot.SelectedIndex == -1 ? 0 : accInvSlot.SelectedIndex;
+            accInvSlot.Items.Clear();
+            var t = new List<Tuple<Int64, Int64>>();
+            var sl = 1;
+            foreach (var s in InvItems) {
+                accInvSlot.Items.Add(String.Format("{0}. {1} x {2}", sl , s.Item2, Items.Where(i => i.Value == s.Item1).Select(i => i.Key).Single()));
+                sl++;
+            }
+            accInvSlot.SelectedIndex = slot;
+            accInvSlot.SelectedIndexChanged += accInvSlot_SelectedIndexChanged;
         }
         #endregion
 
@@ -183,17 +197,22 @@ namespace IntersectToolkit {
                 Stats = chara.stats.Split(',').Select(x => x.ToInt32()).ToArray();
                 accCharStat.SelectedIndex = 1; accCharStat.SelectedIndex = 0;
 
-                accInvSlot.SelectedIndex = 1; accInvSlot.SelectedIndex = 0;
+                RefreshInventory();
             }
         }
         private void accUserSaveChanges_Click(object sender, EventArgs e) {
             using (var tran = DBHandler.BeginTransaction()) {
                 try {
-                    DBHandler.ExecuteNonQuery("UPDATE users SET user=@user, email=@email, power=@power WHERE id=@id;", new Dictionary<String, Object>() { { "@user", accUserName.Text.Trim() }, { "@email", accUserEmail.Text.Trim() }, { "@power", accUserAccess.SelectedIndex }, { "@id", accUserId.Text.Trim() } });
+                    DBHandler.ExecuteNonQuery("UPDATE users SET user=@user, email=@email, power=@power WHERE id=@id;", new Dictionary<String, Object>() { { "@user", accUserName.Text.Trim() }, { "@email", accUserEmail.Text.Trim() }, { "@power", accUserAccess.SelectedIndex }, { "@id", accUserId.Text.Trim() } }, tran);
                     DBHandler.ExecuteNonQuery("UPDATE characters SET name=@name, map=@map, x=@x, y=@y, z=@z, dir=@dir, sprite=@sprite, face=@face, class=@class, gender=@gender, level=@level, exp=@exp, statpoints=@statpoints, vitals=@vitals, maxvitals=@maxvitals, stats=@stats WHERE id=@id;",
                         new Dictionary<String, Object>() { { "@name", accCharName.Text.Trim() }, { "@map", Maps[(String)accCharMap.SelectedItem] }, { "@x", accCharX.Text.Trim() }, { "@y", accCharY.Text.Trim() }, { "@z", accCharZ.SelectedIndex }, { "@dir", accCharDirection.SelectedIndex }, { "@sprite", accCharSprite.Text.Trim() }, { "@face", accCharFace.Text.Trim() },
                     { "@class", Classes[(String)accCharClass.SelectedItem] }, { "@gender", accCharGender.SelectedIndex }, { "@level", accCharLevel.Text.Trim() }, { "@exp", accCharExp.Text.Trim() }, { "@statpoints", accCharStatpoints.Text.Trim() }, { "@id", accCharId.Text.Trim() }, { "@vitals", String.Join(",", CurVitals.Select(x=>x.ToString())) },
-                    { "@maxvitals", String.Join(",", MaxVitals.Select(x=>x.ToString())) }, { "@stats", String.Join(",", Stats.Select(x=>x.ToString())) }});
+                    { "@maxvitals", String.Join(",", MaxVitals.Select(x=>x.ToString())) }, { "@stats", String.Join(",", Stats.Select(x=>x.ToString())) }}, tran);
+                    var slot = 0;
+                    foreach (var i in InvItems) {
+                        DBHandler.ExecuteNonQuery("UPDATE char_inventory SET itemnum=@itemnum, itemval=@itemval WHERE char_id=@charid AND slot=@slot", new Dictionary<String, Object>() { { "@itemnum", i.Item1 }, { "@itemval", i.Item2 }, { "@charid", accCharId.Text }, { "@slot", slot } }, tran);
+                        slot++;
+                    }
                     tran.Commit();
                 } catch (Exception ex) {
                     tran.Rollback();
@@ -225,6 +244,25 @@ namespace IntersectToolkit {
         }
         private void accCharStat_SelectedIndexChanged(object sender, EventArgs e) {
             accCharStatValue.Text = Stats[accCharStat.SelectedIndex].ToString();
+        }
+        private void accInvSlot_SelectedIndexChanged(object sender, EventArgs e) {
+            var item = (Int32)InvItems[accInvSlot.SelectedIndex].Item1;
+            item = item > 0 ? item : -1;
+            accInvItem.SelectedItem = Items.Where(x => x.Value == item).Select(x => x.Key).Single();
+            accInvValue.Text = InvItems[accInvSlot.SelectedIndex].Item2.ToString();
+        }
+        private void accInvItem_SelectedIndexChanged(object sender, EventArgs e) {
+            var slot = accInvSlot.SelectedIndex;
+            var item = Items[(String)accInvItem.SelectedItem];
+            InvItems[slot] = new Tuple<Int64, Int64>(item, InvItems[slot].Item2);
+            RefreshInventoryList();
+        }
+        private void accInvValue_TextChanged(object sender, EventArgs e) {
+            var val = accInvValue.Text.ToInt32();
+            var slot = accInvSlot.SelectedIndex;
+            InvItems[slot] = new Tuple<Int64, Int64>(InvItems[slot].Item1, val);
+            accInvValue.Text = val.ToString();
+            RefreshInventoryList();
         }
         #endregion
 
@@ -360,6 +398,8 @@ namespace IntersectToolkit {
                 w.RunWorkerAsync(new String[] { resizeInput.Text, resizeOutput.Text });
             }
         }
+
+
 
 
 

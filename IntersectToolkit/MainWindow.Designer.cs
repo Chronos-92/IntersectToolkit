@@ -1277,6 +1277,7 @@
             this.accInvSlot.Name = "accInvSlot";
             this.accInvSlot.Size = new System.Drawing.Size(153, 160);
             this.accInvSlot.TabIndex = 0;
+            this.accInvSlot.SelectedIndexChanged += new System.EventHandler(this.accInvSlot_SelectedIndexChanged);
             // 
             // label33
             // 
@@ -1295,6 +1296,7 @@
             this.accInvItem.Name = "accInvItem";
             this.accInvItem.Size = new System.Drawing.Size(117, 21);
             this.accInvItem.TabIndex = 52;
+            this.accInvItem.SelectedIndexChanged += new System.EventHandler(this.accInvItem_SelectedIndexChanged);
             // 
             // accInvValue
             // 
@@ -1302,6 +1304,7 @@
             this.accInvValue.Name = "accInvValue";
             this.accInvValue.Size = new System.Drawing.Size(117, 20);
             this.accInvValue.TabIndex = 55;
+            this.accInvValue.TextChanged += new System.EventHandler(this.accInvValue_TextChanged);
             // 
             // label34
             // 
