@@ -26,6 +26,7 @@ namespace IntersectToolkit {
         private Int32[] CurVitals;
         private Int32[] MaxVitals;
         private Int32[] Stats;
+        private Tuple<Int64, Int64>[] InvItems;
 
         public MainWindow() {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace IntersectToolkit {
             Options.MaxStatValue = Int32.Parse(config["Config"]["Player"]["MaxStat"].InnerXml);
             Options.MaxLevel = Int32.Parse(config["Config"]["Player"]["MaxLevel"].InnerXml);
             Options.MaxInvItems = Int32.Parse(config["Config"]["Player"]["MaxInventory"].InnerXml);
-            foreach (var x in Enumerable.Range(1, Options.MaxInvItems)) { accInvSlot.Items.Add(x); }
+            foreach (var x in Enumerable.Range(1, Options.MaxInvItems)) { accInvSlot.Items.Add(String.Format("{0}.", x)); }
         }
         #endregion
 
@@ -57,6 +58,7 @@ namespace IntersectToolkit {
             RefreshClasses();
             RefreshItems();
             RefreshAccounts();
+            RefreshInventory();
             RefreshTilesets();
         }
         private void RefreshAccounts() {
@@ -105,6 +107,17 @@ namespace IntersectToolkit {
                 Items.Add(x.Name, i.id);
                 accInvItem.Items.Add(x.Name);
             }
+        }
+        private void RefreshInventory() {
+            var slot = accInvSlot.SelectedIndex == -1 ? 0 : accInvSlot.SelectedIndex;
+            accInvSlot.Items.Clear();
+            var t = new List<Tuple<Int64, Int64>>();
+            foreach(var s in DBHandler.ExecuteQuery<Inventory>("SELECT * FROM char_inventory WHERE char_id=@charid", new Dictionary<String, Object>() { { "@charid", accCharId.Text } })) {
+                t.Add(new Tuple<Int64, Int64>(s.itemnum, s.itemval));
+                accInvSlot.Items.Add(String.Format("{0}. {1} x {2}", s.slot + 1, s.itemval, Items.Where(i => i.Value == s.itemnum).Select(i => i.Key).SingleOrDefault()));
+            }
+            InvItems = t.ToArray();
+            accInvSlot.SelectedIndex = slot;
         }
         #endregion
 
@@ -169,6 +182,8 @@ namespace IntersectToolkit {
 
                 Stats = chara.stats.Split(',').Select(x => x.ToInt32()).ToArray();
                 accCharStat.SelectedIndex = 1; accCharStat.SelectedIndex = 0;
+
+                accInvSlot.SelectedIndex = 1; accInvSlot.SelectedIndex = 0;
             }
         }
         private void accUserSaveChanges_Click(object sender, EventArgs e) {
