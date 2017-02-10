@@ -90,6 +90,7 @@
             this.accInvItem = new System.Windows.Forms.ComboBox();
             this.accInvSlot = new System.Windows.Forms.ListBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label36 = new System.Windows.Forms.Label();
             this.accUserSaveChanges = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.accUserSalt = new System.Windows.Forms.TextBox();
@@ -141,7 +142,9 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.resizeInput = new System.Windows.Forms.TextBox();
             this.resizeInputBrowse = new System.Windows.Forms.Button();
-            this.label36 = new System.Windows.Forms.Label();
+            this.accDelAccount = new System.Windows.Forms.Button();
+            this.accDelCharacter = new System.Windows.Forms.Button();
+            this.lnkDonate = new System.Windows.Forms.LinkLabel();
             this.TabsMain.SuspendLayout();
             this.tabdatabase.SuspendLayout();
             this.tdatabase.SuspendLayout();
@@ -210,6 +213,8 @@
             // 
             // tabaccounts
             // 
+            this.tabaccounts.Controls.Add(this.accDelCharacter);
+            this.tabaccounts.Controls.Add(this.accDelAccount);
             this.tabaccounts.Controls.Add(this.accCharBox);
             this.tabaccounts.Controls.Add(this.accUserSaveChanges);
             this.tabaccounts.Controls.Add(this.groupBox2);
@@ -865,6 +870,16 @@
             this.tabPage9.Text = "Spells";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(163, 84);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(237, 31);
+            this.label36.TabIndex = 0;
+            this.label36.Text = "Work in Progress";
+            // 
             // accUserSaveChanges
             // 
             this.accUserSaveChanges.Location = new System.Drawing.Point(633, 411);
@@ -1376,27 +1391,50 @@
             this.resizeInputBrowse.UseVisualStyleBackColor = true;
             this.resizeInputBrowse.Click += new System.EventHandler(this.resizeInputBrowse_Click);
             // 
-            // label36
+            // accDelAccount
             // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(163, 84);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(237, 31);
-            this.label36.TabIndex = 0;
-            this.label36.Text = "Work in Progress";
+            this.accDelAccount.Location = new System.Drawing.Point(132, 411);
+            this.accDelAccount.Name = "accDelAccount";
+            this.accDelAccount.Size = new System.Drawing.Size(107, 23);
+            this.accDelAccount.TabIndex = 5;
+            this.accDelAccount.Text = "Delete Account";
+            this.accDelAccount.UseVisualStyleBackColor = true;
+            this.accDelAccount.Click += new System.EventHandler(this.accDelAccount_Click);
+            // 
+            // accDelCharacter
+            // 
+            this.accDelCharacter.Location = new System.Drawing.Point(245, 411);
+            this.accDelCharacter.Name = "accDelCharacter";
+            this.accDelCharacter.Size = new System.Drawing.Size(107, 23);
+            this.accDelCharacter.TabIndex = 6;
+            this.accDelCharacter.Text = "Delete Character";
+            this.accDelCharacter.UseVisualStyleBackColor = true;
+            this.accDelCharacter.Click += new System.EventHandler(this.accDelCharacter_Click);
+            // 
+            // lnkDonate
+            // 
+            this.lnkDonate.AutoSize = true;
+            this.lnkDonate.Location = new System.Drawing.Point(713, 9);
+            this.lnkDonate.Name = "lnkDonate";
+            this.lnkDonate.Size = new System.Drawing.Size(45, 13);
+            this.lnkDonate.TabIndex = 1;
+            this.lnkDonate.TabStop = true;
+            this.lnkDonate.Text = "Donate!";
+            this.lnkDonate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDonate_LinkClicked);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lnkDonate);
             this.Controls.Add(this.TabsMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Intersect Toolkit";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.TabsMain.ResumeLayout(false);
             this.tabdatabase.ResumeLayout(false);
@@ -1447,6 +1485,7 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1571,6 +1610,9 @@
         private System.Windows.Forms.ComboBox accEquipSlot;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Button accDelCharacter;
+        private System.Windows.Forms.Button accDelAccount;
+        private System.Windows.Forms.LinkLabel lnkDonate;
     }
 }
 

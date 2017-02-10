@@ -6,6 +6,7 @@ using SQLiteConnector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -34,6 +35,14 @@ namespace IntersectToolkit {
         }
         private void MainWindow_Load(object sender, EventArgs e) {
             LoadOptions();
+        }
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e) {
+            // Save everything by neatly closing the Database.
+            if (DBHandler != null) DBHandler.Close();
+        }
+        private void lnkDonate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=silvester@vanharberden.eu&lc=US&description=Intersect%20Toolkit&currency_code=USD&bn=PP%2dDonationsBF");
+
         }
 
         #region Options
@@ -283,6 +292,51 @@ namespace IntersectToolkit {
             if (EquipItems == null) return;
             var invslot = EquipItems[accEquipSlot.SelectedIndex];
             accEquipItem.SelectedItem = invslot < 0 ? "None" : Items.Where(x => x.Value == InvItems[invslot].Item1).Select(x => x.Key).Single();
+        }
+        private void accDelAccount_Click(object sender, EventArgs e) {
+            if (MessageBox.Show("Deleting this account can not be reverted, are you sure you want to continue?", "Delete Account", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                var tran = DBHandler.BeginTransaction();
+                try {
+                    DBHandler.ExecuteNonQuery(@"
+                        DELETE FROM users WHERE id=@id;
+                        DELETE FROM bans WHERE id=@id;
+                        DELETE FROM mutes WHERE id=@id;
+                    ", new Dictionary<String, Object>() { { "@id", accUserId.Text } }, tran);
+                    if (accCharId.Text.Length > 0) DBHandler.ExecuteNonQuery(@"
+                        DELETE FROM char_bank WHERE char_id=@id;
+                        DELETE FROM char_hotbar WHERE char_id=@id;
+                        DELETE FROM char_inventory WHERE char_id=@id;
+                        DELETE FROM char_quests WHERE char_id=@id;
+                        DELETE FROM char_spells WHERE char_id=@id;
+                        DELETE FROM char_switches WHERE char_id=@id;
+                        DELETE FROM char_variables WHERE char_id=@id;
+                    ", new Dictionary<String, Object>() { { "@id", accCharId.Text } }, tran);
+                } catch (Exception ex) {
+                    tran.Rollback();
+                    throw ex;
+                }
+                RefreshAccounts();
+            }
+        }
+        private void accDelCharacter_Click(object sender, EventArgs e) {
+            if (MessageBox.Show("Deleting this character can not be reverted, are you sure you want to continue?", "Delete Character", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                var tran = DBHandler.BeginTransaction();
+                try {
+                    if (accCharId.Text.Length > 0) DBHandler.ExecuteNonQuery(@"
+                        DELETE FROM char_bank WHERE char_id=@id;
+                        DELETE FROM char_hotbar WHERE char_id=@id;
+                        DELETE FROM char_inventory WHERE char_id=@id;
+                        DELETE FROM char_quests WHERE char_id=@id;
+                        DELETE FROM char_spells WHERE char_id=@id;
+                        DELETE FROM char_switches WHERE char_id=@id;
+                        DELETE FROM char_variables WHERE char_id=@id;
+                    ", new Dictionary<String, Object>() { { "@id", accCharId.Text } }, tran);
+                } catch (Exception ex) {
+                    tran.Rollback();
+                    throw ex;
+                }
+                RefreshAccounts();
+            }
         }
         #endregion
 
