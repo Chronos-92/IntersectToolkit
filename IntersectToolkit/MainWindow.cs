@@ -128,8 +128,10 @@ namespace IntersectToolkit {
                 accInvSlot.Items.Add(String.Format("{0}. {1} x {2}", s.slot + 1, s.itemval, Items.Where(i => i.Value == s.itemnum).Select(i => i.Key).SingleOrDefault()));
             }
             InvItems = t.ToArray();
-            accInvSlot.SelectedIndex = 1; accInvSlot.SelectedIndex = 0;
-            accInvSlot.SelectedIndex = slot;
+            if (accInvSlot.Items.Count> 0) {
+                accInvSlot.SelectedIndex = 1; accInvSlot.SelectedIndex = 0;
+                accInvSlot.SelectedIndex = slot;
+            }
         }
         private void RefreshInventoryList() {
             var slot = accInvSlot.SelectedIndex == -1 ? 0 : accInvSlot.SelectedIndex;
@@ -175,6 +177,8 @@ namespace IntersectToolkit {
         #region Accounts
         private void lstAccounts_SelectedIndexChanged(object sender, EventArgs e) {
             if (lstAccounts.SelectedItem == null) return;
+
+            ClearAllControls(this);
 
             // Account info
             var user = DBHandler.ExecuteQuery<Users>("SELECT * FROM users WHERE user=@user;", new Dictionary<String, Object>() { { "@user", lstAccounts.SelectedItem } }).Single();
@@ -241,12 +245,14 @@ namespace IntersectToolkit {
             }
         }
         private void accCharMaxVital_SelectedIndexChanged(object sender, EventArgs e) {
+            if (MaxVitals == null | accCharMaxVital.SelectedIndex < 0) return;
             accCharMaxVitalValue.Text = MaxVitals[accCharMaxVital.SelectedIndex].ToString();
         }
         private void accCharMaxVitalValue_TextChanged(object sender, EventArgs e) {
             MaxVitals[accCharMaxVital.SelectedIndex] = accCharMaxVitalValue.Text.ToInt32();
         }
         private void accCharCurVital_SelectedIndexChanged(object sender, EventArgs e) {
+            if (CurVitals == null | accCharCurVital.SelectedIndex < 0) return;
             accCharCurVitalValue.Text = CurVitals[accCharCurVital.SelectedIndex].ToString();
         }
         private void accCharCurVitalValue_TextChanged(object sender, EventArgs e) {
@@ -263,6 +269,7 @@ namespace IntersectToolkit {
             Stats[accCharStat.SelectedIndex] = accCharStatValue.Text.ToInt32();
         }
         private void accCharStat_SelectedIndexChanged(object sender, EventArgs e) {
+            if (Stats == null | accCharStat.SelectedIndex < 0) return;
             accCharStatValue.Text = Stats[accCharStat.SelectedIndex].ToString();
         }
         private void accInvSlot_SelectedIndexChanged(object sender, EventArgs e) {
@@ -272,6 +279,7 @@ namespace IntersectToolkit {
             accInvValue.Text = InvItems[accInvSlot.SelectedIndex].Item2.ToString();
         }
         private void accInvItem_SelectedIndexChanged(object sender, EventArgs e) {
+            if (accInvItem.SelectedIndex < 0) return;
             var slot = accInvSlot.SelectedIndex;
             var item = Items[(String)accInvItem.SelectedItem];
             InvItems[slot] = new Tuple<Int64, Int64>(item, InvItems[slot].Item2);
@@ -289,7 +297,7 @@ namespace IntersectToolkit {
             EquipItems[accEquipSlot.SelectedIndex] = accEquipItem.SelectedIndex - 1;
         }
         private void accEquipSlot_SelectedIndexChanged(object sender, EventArgs e) {
-            if (EquipItems == null) return;
+            if (EquipItems == null | InvItems == null | accEquipSlot.SelectedIndex < 0) return;
             var invslot = EquipItems[accEquipSlot.SelectedIndex];
             accEquipItem.SelectedItem = invslot < 0 ? "None" : Items.Where(x => x.Value == InvItems[invslot].Item1).Select(x => x.Key).Single();
         }
@@ -303,6 +311,7 @@ namespace IntersectToolkit {
                         DELETE FROM mutes WHERE id=@id;
                     ", new Dictionary<String, Object>() { { "@id", accUserId.Text } }, tran);
                     if (accCharId.Text.Length > 0) DBHandler.ExecuteNonQuery(@"
+                        DELETE FROM characters WHERE id=@id;
                         DELETE FROM char_bank WHERE char_id=@id;
                         DELETE FROM char_hotbar WHERE char_id=@id;
                         DELETE FROM char_inventory WHERE char_id=@id;
@@ -311,6 +320,7 @@ namespace IntersectToolkit {
                         DELETE FROM char_switches WHERE char_id=@id;
                         DELETE FROM char_variables WHERE char_id=@id;
                     ", new Dictionary<String, Object>() { { "@id", accCharId.Text } }, tran);
+                    tran.Commit();
                 } catch (Exception ex) {
                     tran.Rollback();
                     throw ex;
@@ -323,6 +333,7 @@ namespace IntersectToolkit {
                 var tran = DBHandler.BeginTransaction();
                 try {
                     if (accCharId.Text.Length > 0) DBHandler.ExecuteNonQuery(@"
+                        DELETE FROM characters WHERE id=@id;
                         DELETE FROM char_bank WHERE char_id=@id;
                         DELETE FROM char_hotbar WHERE char_id=@id;
                         DELETE FROM char_inventory WHERE char_id=@id;
@@ -331,6 +342,7 @@ namespace IntersectToolkit {
                         DELETE FROM char_switches WHERE char_id=@id;
                         DELETE FROM char_variables WHERE char_id=@id;
                     ", new Dictionary<String, Object>() { { "@id", accCharId.Text } }, tran);
+                    tran.Commit();
                 } catch (Exception ex) {
                     tran.Rollback();
                     throw ex;
@@ -481,6 +493,18 @@ namespace IntersectToolkit {
         #endregion
 
         #endregion
+
+        void ClearAllControls(Control con) {
+            foreach (var c in con.Controls) {
+                if (c is TextBox) {
+                    ((TextBox)c).Clear();
+                } else if (c is ComboBox) {
+                    ((ComboBox)c).SelectedIndex = -1;
+                } else {
+                    ClearAllControls((Control)c);
+                }
+            }
+        }
 
     }
 }
