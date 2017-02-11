@@ -57,6 +57,7 @@
     <Compile Include="Database\Characters.cs" />
     <Compile Include="Database\BlobObject.cs" />
     <Compile Include="Database\Inventory.cs" />
+    <Compile Include="Database\Spells.cs" />
     <Compile Include="Database\Tilesets.cs" />
     <Compile Include="Database\Users.cs" />
     <Compile Include="Extensions.cs" />

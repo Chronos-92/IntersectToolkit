@@ -27,6 +27,8 @@
             this.tabdatabase = new System.Windows.Forms.TabPage();
             this.tdatabase = new System.Windows.Forms.TabControl();
             this.tabaccounts = new System.Windows.Forms.TabPage();
+            this.accDelCharacter = new System.Windows.Forms.Button();
+            this.accDelAccount = new System.Windows.Forms.Button();
             this.accCharBox = new System.Windows.Forms.GroupBox();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -90,7 +92,6 @@
             this.accInvItem = new System.Windows.Forms.ComboBox();
             this.accInvSlot = new System.Windows.Forms.ListBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.label36 = new System.Windows.Forms.Label();
             this.accUserSaveChanges = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.accUserSalt = new System.Windows.Forms.TextBox();
@@ -142,9 +143,11 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.resizeInput = new System.Windows.Forms.TextBox();
             this.resizeInputBrowse = new System.Windows.Forms.Button();
-            this.accDelAccount = new System.Windows.Forms.Button();
-            this.accDelCharacter = new System.Windows.Forms.Button();
             this.lnkDonate = new System.Windows.Forms.LinkLabel();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.labelspell = new System.Windows.Forms.Label();
+            this.accSpell = new System.Windows.Forms.ComboBox();
+            this.accSpellSlot = new System.Windows.Forms.ListBox();
             this.TabsMain.SuspendLayout();
             this.tabdatabase.SuspendLayout();
             this.tdatabase.SuspendLayout();
@@ -175,6 +178,7 @@
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox16.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabsMain
@@ -227,6 +231,26 @@
             this.tabaccounts.TabIndex = 0;
             this.tabaccounts.Text = "Accounts";
             this.tabaccounts.UseVisualStyleBackColor = true;
+            // 
+            // accDelCharacter
+            // 
+            this.accDelCharacter.Location = new System.Drawing.Point(245, 411);
+            this.accDelCharacter.Name = "accDelCharacter";
+            this.accDelCharacter.Size = new System.Drawing.Size(107, 23);
+            this.accDelCharacter.TabIndex = 6;
+            this.accDelCharacter.Text = "Delete Character";
+            this.accDelCharacter.UseVisualStyleBackColor = true;
+            this.accDelCharacter.Click += new System.EventHandler(this.accDelCharacter_Click);
+            // 
+            // accDelAccount
+            // 
+            this.accDelAccount.Location = new System.Drawing.Point(132, 411);
+            this.accDelAccount.Name = "accDelAccount";
+            this.accDelAccount.Size = new System.Drawing.Size(107, 23);
+            this.accDelAccount.TabIndex = 5;
+            this.accDelAccount.Text = "Delete Account";
+            this.accDelAccount.UseVisualStyleBackColor = true;
+            this.accDelAccount.Click += new System.EventHandler(this.accDelAccount_Click);
             // 
             // accCharBox
             // 
@@ -861,7 +885,7 @@
             // 
             // tabPage9
             // 
-            this.tabPage9.Controls.Add(this.label36);
+            this.tabPage9.Controls.Add(this.groupBox16);
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
@@ -869,16 +893,6 @@
             this.tabPage9.TabIndex = 3;
             this.tabPage9.Text = "Spells";
             this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(163, 84);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(237, 31);
-            this.label36.TabIndex = 0;
-            this.label36.Text = "Work in Progress";
             // 
             // accUserSaveChanges
             // 
@@ -1391,26 +1405,6 @@
             this.resizeInputBrowse.UseVisualStyleBackColor = true;
             this.resizeInputBrowse.Click += new System.EventHandler(this.resizeInputBrowse_Click);
             // 
-            // accDelAccount
-            // 
-            this.accDelAccount.Location = new System.Drawing.Point(132, 411);
-            this.accDelAccount.Name = "accDelAccount";
-            this.accDelAccount.Size = new System.Drawing.Size(107, 23);
-            this.accDelAccount.TabIndex = 5;
-            this.accDelAccount.Text = "Delete Account";
-            this.accDelAccount.UseVisualStyleBackColor = true;
-            this.accDelAccount.Click += new System.EventHandler(this.accDelAccount_Click);
-            // 
-            // accDelCharacter
-            // 
-            this.accDelCharacter.Location = new System.Drawing.Point(245, 411);
-            this.accDelCharacter.Name = "accDelCharacter";
-            this.accDelCharacter.Size = new System.Drawing.Size(107, 23);
-            this.accDelCharacter.TabIndex = 6;
-            this.accDelCharacter.Text = "Delete Character";
-            this.accDelCharacter.UseVisualStyleBackColor = true;
-            this.accDelCharacter.Click += new System.EventHandler(this.accDelCharacter_Click);
-            // 
             // lnkDonate
             // 
             this.lnkDonate.AutoSize = true;
@@ -1421,6 +1415,46 @@
             this.lnkDonate.TabStop = true;
             this.lnkDonate.Text = "Donate!";
             this.lnkDonate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDonate_LinkClicked);
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.labelspell);
+            this.groupBox16.Controls.Add(this.accSpell);
+            this.groupBox16.Controls.Add(this.accSpellSlot);
+            this.groupBox16.Location = new System.Drawing.Point(6, 6);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(257, 189);
+            this.groupBox16.TabIndex = 55;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "Spellbook";
+            // 
+            // labelspell
+            // 
+            this.labelspell.AutoSize = true;
+            this.labelspell.Location = new System.Drawing.Point(6, 157);
+            this.labelspell.Name = "labelspell";
+            this.labelspell.Size = new System.Drawing.Size(33, 13);
+            this.labelspell.TabIndex = 53;
+            this.labelspell.Text = "Spell:";
+            // 
+            // accSpell
+            // 
+            this.accSpell.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accSpell.FormattingEnabled = true;
+            this.accSpell.Location = new System.Drawing.Point(45, 154);
+            this.accSpell.Name = "accSpell";
+            this.accSpell.Size = new System.Drawing.Size(206, 21);
+            this.accSpell.TabIndex = 52;
+            this.accSpell.SelectedIndexChanged += new System.EventHandler(this.accSpell_SelectedIndexChanged);
+            // 
+            // accSpellSlot
+            // 
+            this.accSpellSlot.FormattingEnabled = true;
+            this.accSpellSlot.Location = new System.Drawing.Point(6, 19);
+            this.accSpellSlot.Name = "accSpellSlot";
+            this.accSpellSlot.Size = new System.Drawing.Size(245, 121);
+            this.accSpellSlot.TabIndex = 0;
+            this.accSpellSlot.SelectedIndexChanged += new System.EventHandler(this.accSpellSlot_SelectedIndexChanged);
             // 
             // MainWindow
             // 
@@ -1463,7 +1497,6 @@
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
             this.tabPage9.ResumeLayout(false);
-            this.tabPage9.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1484,6 +1517,8 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1609,10 +1644,13 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox accEquipSlot;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Button accDelCharacter;
         private System.Windows.Forms.Button accDelAccount;
         private System.Windows.Forms.LinkLabel lnkDonate;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.Label labelspell;
+        private System.Windows.Forms.ComboBox accSpell;
+        private System.Windows.Forms.ListBox accSpellSlot;
     }
 }
 

@@ -24,10 +24,12 @@ namespace IntersectToolkit {
         private Dictionary<String, Int64> Maps = new Dictionary<String, Int64>();
         private Dictionary<String, Int64> Classes = new Dictionary<String, Int64>();
         private Dictionary<String, Int64> Items = new Dictionary<String, Int64>();
+        private Dictionary<String, Int64> Spells = new Dictionary<String, Int64>();
         private Int32[] CurVitals;
         private Int32[] MaxVitals;
         private Int32[] Stats;
         private Tuple<Int64, Int64>[] InvItems;
+        private Int64[] SpellBook;
         private Int64[] EquipItems;
 
         public MainWindow() {
@@ -68,6 +70,7 @@ namespace IntersectToolkit {
             RefreshMaps();
             RefreshClasses();
             RefreshItems();
+            RefreshSpells();
             RefreshAccounts();
             RefreshInventory();
             RefreshTilesets();
@@ -111,12 +114,25 @@ namespace IntersectToolkit {
         private void RefreshItems() {
             Items.Clear();
             Items.Add("None", -1);
+            accInvItem.Items.Clear();
             accInvItem.Items.Add("None");
             foreach (var i in DBHandler.ExecuteQuery<BlobObject>("SELECT * FROM items WHERE deleted=0")) {
                 var x = new ItemBase((Int32)i.id);
                 x.Load(i.data);
                 Items.Add(x.Name, i.id);
                 accInvItem.Items.Add(x.Name);
+            }
+        }
+        private void RefreshSpells() {
+            Spells.Clear();
+            Spells.Add("None", -1);
+            accSpell.Items.Clear();
+            accSpell.Items.Add("None");
+            foreach (var i in DBHandler.ExecuteQuery<BlobObject>("SELECT * FROM spells WHERE deleted=0")) {
+                var x = new SpellBase((Int32)i.id);
+                x.Load(i.data);
+                Spells.Add(x.Name, i.id);
+                accSpell.Items.Add(x.Name);
             }
         }
         private void RefreshInventory() {
@@ -133,6 +149,20 @@ namespace IntersectToolkit {
                 accInvSlot.SelectedIndex = slot;
             }
         }
+        private void RefreshSpellbook() {
+            var slot = accSpellSlot.SelectedIndex == -1 ? 0 : accSpellSlot.SelectedIndex;
+            accSpellSlot.Items.Clear();
+            var l = new List<Int64>();
+            foreach (var s in DBHandler.ExecuteQuery<Spells>("SELECT * FROM char_spells WHERE char_id=@charid", new Dictionary<String, Object>() { { "@charid", accCharId.Text } })) {
+                accSpellSlot.Items.Add(String.Format("{0}. {1}", s.slot + 1,  Spells.Where(i => i.Value == s.spellnum).Select(i => i.Key).SingleOrDefault()));
+                l.Add(s.spellnum);
+            }
+            SpellBook = l.ToArray();
+            if (accSpellSlot.Items.Count > 0) {
+                accSpellSlot.SelectedIndex = 1; accSpellSlot.SelectedIndex = 0;
+                accSpellSlot.SelectedIndex = slot;
+            }
+        }
         private void RefreshInventoryList() {
             var slot = accInvSlot.SelectedIndex == -1 ? 0 : accInvSlot.SelectedIndex;
             var slot2 = accEquipItem.SelectedIndex == -1 ? 0 : accEquipItem.SelectedIndex;
@@ -141,7 +171,6 @@ namespace IntersectToolkit {
             accInvSlot.Items.Clear();
             accEquipItem.Items.Clear();
             accEquipItem.Items.Add("None");
-            var t = new List<Tuple<Int64, Int64>>();
             var sl = 1;
             foreach (var s in InvItems) {
                 accInvSlot.Items.Add(String.Format("{0}. {1} x {2}", sl , s.Item2, Items.Where(i => i.Value == s.Item1).Select(i => i.Key).Single()));
@@ -152,6 +181,18 @@ namespace IntersectToolkit {
             accEquipItem.SelectedIndex = slot2;
             accEquipSlot.SelectedIndex = slot3;
             accInvSlot.SelectedIndexChanged += accInvSlot_SelectedIndexChanged;
+        }
+        private void RefreshSpellbookList() {
+            var slot = accSpellSlot.SelectedIndex == -1 ? 0 : accSpellSlot.SelectedIndex;
+            accSpellSlot.SelectedIndexChanged -= accSpellSlot_SelectedIndexChanged;
+            accSpellSlot.Items.Clear();
+            var sl = 1;
+            foreach (var s in SpellBook) {
+                accSpellSlot.Items.Add(String.Format("{0}. {1}", sl, Spells.Where(i => i.Value == s).Select(i => i.Key).Single()));
+                sl++;
+            }
+            accSpellSlot.SelectedIndex = slot;
+            accSpellSlot.SelectedIndexChanged += accSpellSlot_SelectedIndexChanged;
         }
         #endregion
 
@@ -222,6 +263,7 @@ namespace IntersectToolkit {
                 accCharStat.SelectedIndex = 1; accCharStat.SelectedIndex = 0;
 
                 RefreshInventory();
+                RefreshSpellbook();
             }
         }
         private void accUserSaveChanges_Click(object sender, EventArgs e) {
@@ -235,6 +277,11 @@ namespace IntersectToolkit {
                     var slot = 0;
                     foreach (var i in InvItems) {
                         DBHandler.ExecuteNonQuery("UPDATE char_inventory SET itemnum=@itemnum, itemval=@itemval WHERE char_id=@charid AND slot=@slot", new Dictionary<String, Object>() { { "@itemnum", i.Item1 }, { "@itemval", i.Item2 }, { "@charid", accCharId.Text }, { "@slot", slot } }, tran);
+                        slot++;
+                    }
+                    slot = 0;
+                    foreach (var i in SpellBook) {
+                        DBHandler.ExecuteNonQuery("UPDATE char_spells SET spellnum=@spellnum WHERE char_id=@charid AND slot=@slot", new Dictionary<String, Object>() { { "@spellnum", i }, { "@charid", accCharId.Text }, { "@slot", slot } }, tran);
                         slot++;
                     }
                     tran.Commit();
@@ -286,6 +333,7 @@ namespace IntersectToolkit {
             RefreshInventoryList();
         }
         private void accInvValue_TextChanged(object sender, EventArgs e) {
+            if (accInvSlot.SelectedIndex < 0) return;
             var val = accInvValue.Text.ToInt32();
             var slot = accInvSlot.SelectedIndex;
             InvItems[slot] = new Tuple<Int64, Int64>(InvItems[slot].Item1, val);
@@ -349,6 +397,18 @@ namespace IntersectToolkit {
                 }
                 RefreshAccounts();
             }
+        }
+        private void accSpellSlot_SelectedIndexChanged(object sender, EventArgs e) {
+            var spell = (Int32)SpellBook[accSpellSlot.SelectedIndex];
+            spell = spell > 0 ? spell : -1;
+            accSpell.SelectedItem = Spells.Where(x => x.Value == spell).Select(x => x.Key).Single();
+        }
+        private void accSpell_SelectedIndexChanged(object sender, EventArgs e) {
+            if (accSpell.SelectedIndex < 0) return;
+            var slot = accSpellSlot.SelectedIndex;
+            var spell = Spells[(String)accSpell.SelectedItem];
+            SpellBook[slot] = spell;
+            RefreshSpellbookList();
         }
         #endregion
 
@@ -500,11 +560,13 @@ namespace IntersectToolkit {
                     ((TextBox)c).Clear();
                 } else if (c is ComboBox) {
                     ((ComboBox)c).SelectedIndex = -1;
+                } else if (c is ListBox) {
+                    var b = (ListBox)c;
+                    if (b.Name != "lstAccounts") b.Items.Clear();
                 } else {
                     ClearAllControls((Control)c);
                 }
             }
         }
-
     }
 }
